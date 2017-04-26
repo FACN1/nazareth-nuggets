@@ -1,7 +1,9 @@
-var addNuggetButton = document.querySelector('.add-nugget-button')
+var addNuggetButton = document.querySelector('.add-nugget-button');
 var map = document.querySelector('.map');
 var mapIcons = document.querySelectorAll('.map-icon');
 var nuggetContainer = document.querySelector('.nugget-container');
+var addNuggetContainer = document.querySelector('.nugget-add-container');
+var checkButton = document.querySelector('.add-check');
 
 // show location select screen when add button is clicked
 addNuggetButton.addEventListener('click', function(e) {
@@ -23,4 +25,10 @@ mapIcons.forEach(function(icon) {
 document.addEventListener('click', function(e) {
   nuggetContainer.classList.add('not-visible');
   nuggetContainer.classList.remove('visible');
+})
+
+checkButton.addEventListener('click', function(e) {
+  addNuggetContainer.classList.toggle('not-visible');
+  addNuggetContainer.classList.toggle('visible');
+  event.stopPropagation();
 })

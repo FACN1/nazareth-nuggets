@@ -146,3 +146,96 @@ NUGGET
 .nugget-pic {
   width: 70px;
 }
+
+.nugget-add-container {
+  position: absolute;
+  left: 0%;
+  background: rgba(139, 243, 135, 0.91);
+  width: 410px;
+  padding: 0px 10px;
+  height: 70%;
+  margin: 0px 10px;
+  border: 0px solid black;
+  border-radius: 10px;
+  transition: all 0.4s ease;
+}
+
+.nugget-add-container.visible {
+  top: 30%;
+}
+
+.nugget-add-container.not-visible {
+  top: 100%;
+}
+
+.nugget-add-container .fa-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+/* The Add Form */
+
+.title-input {
+  padding: 0.25rem;
+  border-radius: 8px;
+  width: 80%;
+}
+
+.name-input {
+  padding: 0.25rem;
+  width: 80%;
+}
+
+.image-input {
+  padding: 0.25rem;
+  width: 80%;
+}
+
+.info-area {
+  width: 80%;
+
+}
+
+label {
+  position:relative;
+  display: block;
+}
+
+input {
+  display: block;
+  margin: auto;
+}
+
+textarea {
+  display: block;
+  margin: auto;
+}
+
+select {
+  display: block;
+  margin: auto;
+  width: 80%;
+}
+
+h4 {
+  text-align: center;
+}
+
+h3 {
+  margin: auto;
+  font-size: 15px;
+  width: 80%;
+}
+
+.button {
+
+}
+
+
+.Btn1 {
+  display: block;
+  margin: auto;
+  width: 100px;
+  height: 35px;
+}
