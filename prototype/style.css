@@ -1,0 +1,148 @@
+.app {
+  position: relative;
+  border: 0px solid black;
+  height: 600px;
+  width: 450px;
+  margin: auto;
+  font-family: 'PT Sans', sans-serif;
+  overflow: hidden;
+}
+
+.hidden {
+  display: none;
+}
+
+.header {
+  background: rgba(0, 176, 39, 0.8);
+  position: absolute;
+  height: 11%;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+}
+
+.main-title {
+  margin: 0px;
+  font-family: 'Pacifico', cursive;
+  text-align: center;
+}
+
+.add-button {
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.map {
+  transition: all 0.2s;
+  background: #fff;
+  height: 100%;
+  width: 100%;
+  background: url("./map.png");
+  background-size: cover;
+}
+
+.map.faded {
+  background:
+    linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)),
+    url("./map.png");
+  background-size: cover;
+}
+
+/*
+ICONS
+*/
+
+.fa {
+  position: absolute;
+}
+
+.fa-info {
+  color: red;
+  top: 50%;
+  left: 10%;
+}
+
+.fa-leaf {
+  color: green;
+  top: 20%;
+  left: 20%;
+}
+
+.fa-eye {
+  color: black;
+  top: 90%;
+  left: 90%;
+}
+
+.fa-exclamation {
+  color: yellow;
+  left: 50%;
+  top: 50%;
+}
+
+.fa-book {
+  color: blue;
+  top: 30%;
+  left: 65%;
+}
+
+.fa-map-pin {
+  color: orange;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.fa-check-circle {
+  color: green;
+  top: 75%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, white 55%, transparent 45%);
+}
+
+.fa-times-circle {
+  color: red;
+  top: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, white 55%, transparent 45%);
+}
+
+/*
+NUGGET
+*/
+
+.nugget-container {
+  position: absolute;
+  left: 0%;
+  background: rgba(139, 243, 135, 0.91);
+  width: 410px;
+  padding: 0px 10px;
+  height: 70%;
+  margin: 0px 10px;
+  border: 0px solid black;
+  border-radius: 10px;
+  overflow: scroll;
+  transition: all 0.4s ease;
+}
+
+.nugget-container.visible {
+  top: 30%;
+}
+
+.nugget-container.not-visible {
+  top: 100%;
+}
+
+.nugget-container .fa-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.nugget-pic {
+  width: 70px;
+}
