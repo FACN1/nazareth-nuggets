@@ -3,7 +3,7 @@ var map = document.querySelector('.map');
 var mapIcons = document.querySelectorAll('.map-icon');
 var nuggetContainer = document.querySelector('.nugget-container');
 var addNuggetContainer = document.querySelector('.nugget-add-container');
-var checkButton = document.querySelector('.add-check');
+var addPinCheckButton = document.querySelector('.add-pin-check');
 
 // show location select screen when add button is clicked
 addNuggetButton.addEventListener('click', function(e) {
@@ -27,7 +27,7 @@ document.addEventListener('click', function(e) {
   nuggetContainer.classList.remove('visible');
 })
 
-checkButton.addEventListener('click', function(e) {
+ addPinCheckButton.addEventListener('click', function(e) {
   addNuggetContainer.classList.toggle('not-visible');
   addNuggetContainer.classList.toggle('visible');
   event.stopPropagation();

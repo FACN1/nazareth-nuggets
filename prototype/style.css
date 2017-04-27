@@ -95,7 +95,7 @@ ICONS
   transform: translateX(-50%);
 }
 
-.fa-check-circle {
+.add-pin-check {
   color: green;
   top: 75%;
   left: 50%;
@@ -103,7 +103,7 @@ ICONS
   background: radial-gradient(circle, white 55%, transparent 45%);
 }
 
-.fa-times-circle {
+.add-pin-times {
   color: red;
   top: 90%;
   left: 50%;
@@ -118,7 +118,7 @@ NUGGET
 .nugget-container {
   position: absolute;
   left: 0%;
-  background: rgba(139, 243, 135, 0.91);
+  background: rgba(231, 255, 230, 0.9);
   width: 410px;
   padding: 0px 10px;
   height: 70%;
@@ -147,21 +147,24 @@ NUGGET
   width: 70px;
 }
 
+/* The Add Form */
+
 .nugget-add-container {
   position: absolute;
   left: 0%;
-  background: rgba(139, 243, 135, 0.91);
+  background: rgba(231, 255, 230, 0.9);
   width: 410px;
   padding: 0px 10px;
-  height: 70%;
+  height: 88%;
   margin: 0px 10px;
   border: 0px solid black;
   border-radius: 10px;
   transition: all 0.4s ease;
+  overflow: scroll;
 }
 
 .nugget-add-container.visible {
-  top: 30%;
+  top: 12%;
 }
 
 .nugget-add-container.not-visible {
@@ -174,48 +177,42 @@ NUGGET
   right: 10px;
 }
 
-/* The Add Form */
-
-.title-input {
-  padding: 0.25rem;
+.add-form-input {
+  margin: auto;
+  display: block;
+  padding: 0.5rem;
   border-radius: 8px;
   width: 80%;
+  box-sizing: border-box;
+  margin-bottom: 1em;
+  border: none;
 }
 
-.name-input {
-  padding: 0.25rem;
-  width: 80%;
+.add-form-category-input {
+  height: 3em;
 }
 
-.image-input {
-  padding: 0.25rem;
-  width: 80%;
+.add-form-buttons {
+  margin: 1.5em;
 }
 
-.info-area {
-  width: 80%;
+.add-form-check {
+  color: green;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, white 55%, transparent 45%);
+  left: 42%;
+}
 
+.add-form-times {
+  color: red;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, white 55%, transparent 45%);
+  left: 58%;
 }
 
 label {
   position:relative;
   display: block;
-}
-
-input {
-  display: block;
-  margin: auto;
-}
-
-textarea {
-  display: block;
-  margin: auto;
-}
-
-select {
-  display: block;
-  margin: auto;
-  width: 80%;
 }
 
 h4 {
@@ -227,11 +224,6 @@ h3 {
   font-size: 15px;
   width: 80%;
 }
-
-.button {
-
-}
-
 
 .Btn1 {
   display: block;
