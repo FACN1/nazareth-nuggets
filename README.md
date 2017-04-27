@@ -40,5 +40,6 @@ You may view our static map prototype [here](https://facn1.github.io/city-guide/
 
 
 
-
-![Wireframe](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Wireframe")
+## Wireframes
+![Wireframe](https://github.com/FACN1/city-guide/blob/master/ViewWireframe.JPG "Wireframe")
+![Wireframe](https://github.com/FACN1/city-guide/blob/master/addWireFrame.jpg "Wireframe")
