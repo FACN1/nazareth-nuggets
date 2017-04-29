@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://use.fontawesome.com/c487c1de1c.js"></script>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
+   integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
+   crossorigin=""/>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.35.1/mapbox-gl.js'></script>
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans|Pacifico" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="app">
+
+      <!-- HEADER -->
+      <div class="header">
+        <h1 class="main-title">city nuggets</h1>
+        <i class="fa fa-plus fa-lg add-button add-nugget-button"></i>
+      </div>
+
+      <!-- MAP -->
+      <div class="map" id="mapid"></div>
+
+      <div class="location-select hidden">
+        <i class="fa fa-map-pin fa-3x"></i>
+        <i class="fa fa-check-circle fa-5x add-pin-check"></i>
+        <i class="fa fa-times-circle fa-3x add-pin-times"></i>
+      </div>
+
+      <!-- NUGGET INFO CONTAINER -->
+      <div class="nugget-container not-visible">
+        <i class="fa fa-close"></i>
+
+        <h3 class="nugget-title">Sundays at the Basilica</h3>
+        <p class="nugget-contributor">submitted by <a href="#">lubes</a>.</p>
+        <div class="nugget-rating">
+          <span>+19 </span>
+          <i class="fa fa-thumbs-up"></i>
+          <!-- <i class="fa fa-thumbs-down"></i> -->
+        </div>
+        <img class="nugget-pic" src="./basilica.jpg" alt="basilica">
+        <p class="nugget-info">Every sunday evening there's a procession and a sing-a-long at the Basilica.Every sunday evening there's a procession and a sing-a-long at the Basilica.Every sunday evening there's a procession and a sing-a-long at the Basilica.Every sunday evening there's a procession and a sing-a-long at the Basilica.Every sunday evening there's a procession and a sing-a-long at the Basilica.Every sunday evening there's a procession and a sing-a-long at the Basilica.Every sunday evening there's a procession and a sing-a-long at the Basilica.Every sunday evening there's a procession and a sing-a-long at the Basilica.Every sunday evening there's a procession and a sing-a-long at the Basilica.Every sunday evening there's a procession and a sing-a-long at the Basilica.Every sunday evening there's a procession and a sing-a-long at the Basilica.Every sunday evening there's a procession and a sing-a-long at the Basilica.Every sunday evening there's a procession and a sing-a-long at the Basilica.Every sunday evening there's a procession and a sing-a-long at the Basilica.Every sunday evening there's a procession and a sing-a-long at the Basilica.Every sunday evening there's a procession and a sing-a-long at the Basilica.Every sunday evening there's a procession and a sing-a-long at the Basilica.</p>
+      </div>
+
+      <!-- NUGGET ADD CONTAINER -->
+      <div class="nugget-add-container not-visible">
+
+        <h4 class="nugget-title">Add a Nugget</h4>
+
+        <form class="" action="index.html" method="post" class="add-form">
+
+          <label><h3 class="tt1">
+              Title: </h3><input type="text" name="title" class="add-form-input">
+          </label>
+
+          <label>
+            <h3 class="tt1">Category: </h3>
+            <select class="add-form-input add-form-category-input" name="category">
+              <option value="Food">Food</option>
+              <option value="Info">Info</option>
+              <option value="Fun Fact!">Fun Fact!</option>
+              <option value="View">View</option>
+            </select>
+          </label>
+
+          <label>
+            <h3 class="tt1">Upload Image: </h3>
+            <input type="file" name="name" value="upload image" class="add-form-input">
+          </label>
+
+          <label>
+            <h3 class="tt1">
+              Description: </h3>
+            <textarea name="name" rows="8" cols="80" class="add-form-input"></textarea>
+          </label>
+
+          <label><h3 class="tt1">
+              Your Name: </h3> <input type="text" name="name" class="add-form-input">
+          </label>
+
+          <div class="add-form-buttons">
+            <i class="fa fa-check-circle fa-3x add-form-check"></i>
+            <i class="fa fa-times-circle fa-3x add-form-times"></i>
+          </div>
+
+          <!-- <button type="button" class="Btn1" >We cool?</button> -->
+        </form>
+
+      </div>
+
+    </div>
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"
+  integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
+  crossorigin=""></script>
+    <script type="text/javascript" src="./private_keys.js"></script>
+    <script type="text/javascript" src="./index.js"></script>
+  </body>
+</html>

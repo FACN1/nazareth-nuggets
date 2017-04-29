@@ -1,0 +1,227 @@
+/*rgba(255, 189, 0, 0.92)*/
+
+.app {
+  position: relative;
+  border: 0px solid black;
+  height: 600px;
+  width: 450px;
+  margin: auto;
+  font-family: 'PT Sans', sans-serif;
+  overflow: hidden;
+}
+
+.hidden {
+  display: none;
+}
+
+.header {
+  z-index: 1000;
+  background: rgba(0, 176, 39, 0.8);
+  position: absolute;
+  height: 11%;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+}
+
+.main-title {
+  margin: 0px;
+  font-family: 'Pacifico', cursive;
+  text-align: center;
+}
+
+.add-button {
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.map {
+  transition: all 0.2s;
+  background: #fff;
+  height: 100%;
+  width: 100%;
+  /*background: url("./map.png");
+  background-size: cover;*/
+}
+
+/*.map.faded {
+  background:
+    linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)),
+    url("./map.png");
+  background-size: cover;
+}*/
+
+/*
+ICONS
+*/
+
+.fa {
+  z-index: 1000;
+  position: absolute;
+}
+
+.fa-map-pin {
+  color: orange;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.add-pin-check {
+  color: green;
+  top: 75%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, white 55%, transparent 45%);
+}
+
+.add-pin-times {
+  color: red;
+  top: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, white 55%, transparent 45%);
+}
+
+/*
+NUGGET
+*/
+
+.nugget-container {
+  z-index: 1000;
+  position: absolute;
+  left: 0%;
+  background: rgba(231, 255, 230, 0.9);
+  width: 410px;
+  padding: 0px 10px;
+  height: 70%;
+  margin: 0px 10px;
+  border-top: 8px solid green;
+  border-radius: 10px;
+  overflow: scroll;
+  transition: all 0.4s ease;
+}
+
+.nugget-container.visible {
+  top: 30%;
+}
+
+.nugget-container.not-visible {
+  top: 100%;
+}
+
+.nugget-container .fa-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.nugget-title {
+  margin-top: 4%;
+  font-size: 1.5rem;
+  font-family: 'Pacifico', cursive;
+}
+
+.nugget-pic {
+  width: 110px;
+  height: 120px;
+  float: left;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+.nugget-info {
+  display: inline;
+}
+
+/* The Add Form */
+
+.location-select {
+    z-index: 1000;
+}
+
+.nugget-add-container {
+  z-index: 1000;
+  position: absolute;
+  left: 0%;
+  background: rgba(231, 255, 230, 0.9);
+  width: 410px;
+  padding: 0px 10px;
+  height: 88%;
+  margin: 0px 10px;
+  border-top: 8px solid green;
+  border-radius: 10px;
+  transition: all 0.4s ease;
+  overflow: scroll;
+}
+
+.nugget-add-container.visible {
+  top: 12%;
+}
+
+.nugget-add-container.not-visible {
+  top: 100%;
+}
+
+.nugget-add-container .fa-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.add-form-input {
+  margin: auto;
+  display: block;
+  padding: 0.5rem;
+  border-radius: 8px;
+  width: 80%;
+  box-sizing: border-box;
+  margin-bottom: 1em;
+  border: none;
+}
+
+.add-form-category-input {
+  height: 3em;
+}
+
+.add-form-buttons {
+  margin: 1.5em;
+}
+
+.add-form-check {
+  color: green;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, white 55%, transparent 45%);
+  left: 42%;
+}
+
+.add-form-times {
+  color: red;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, white 55%, transparent 45%);
+  left: 58%;
+}
+
+label {
+  position:relative;
+  display: block;
+}
+
+h4 {
+  text-align: center;
+}
+
+h3 {
+  margin: auto;
+  font-size: 15px;
+  width: 80%;
+}
+
+.Btn1 {
+  display: block;
+  margin: auto;
+  width: 100px;
+  height: 35px;
+}
