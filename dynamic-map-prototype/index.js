@@ -5,7 +5,7 @@ var mapOptions = {
   maxZoom: 20,
 }
 
-var mymap = L.map('mapid', mapOptions).setView([30, 30], 15);
+var mymap = L.map('mapid', mapOptions).setView([32.699, 35.303], 15);
 
 L.tileLayer(
   // mario's custom map
