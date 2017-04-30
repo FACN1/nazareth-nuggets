@@ -2,7 +2,7 @@
 
 Our app allows the user to share and gain information about the different events and locations
 
-You may view our static map prototype [here](https://facn1.github.io/city-guide/static-map-prototype)
+You may view our prototype [here](https://facn1.github.io/city-guide/dynamic-map-prototype)
 
 ### User goals:
 * See information about all of the different events and locations in the city
