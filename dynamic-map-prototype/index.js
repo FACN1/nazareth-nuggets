@@ -18,8 +18,8 @@ L.tileLayer(
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
     maxZoom: 20,
     id: 'mapbox.light',
-    // mario's access token
-    accessToken: privateKeys.mapbox
+    // mario's public access token
+    accessToken: 'pk.eyJ1Ijoia2FyeXVtIiwiYSI6ImNqMjAzNGU4ZjAxa3EycW4xazFxcHZ6a2QifQ.m_dNO1l1sMkM7r4d5nlRRQ'
 }).addTo(mymap);
 
 // if (navigator.geolocation) {
