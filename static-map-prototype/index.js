@@ -1,4 +1,4 @@
-var addNuggetButton = document.querySelector('.add-nugget-button');
+var addNuggetButton = document.querySelector('.add-nugget-button')
 var map = document.querySelector('.map');
 var mapIcons = document.querySelectorAll('.map-icon');
 
