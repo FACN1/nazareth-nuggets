@@ -22,7 +22,8 @@
   },
   "homepage": "https://github.com/FACN1/city-guide#readme",
   "dependencies": {
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "leaflet": "^1.0.3"
   },
   "devDependencies": {
     "eslint": "^3.19.0",

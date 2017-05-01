@@ -1,0 +1,13 @@
+#mapid {
+  width: 500px;
+  height: 500px;
+}
+
+.map {
+  transition: all 0.2s;
+  background: #fff;
+  height: 100%;
+  width: 100%;
+  background: url("./map.png");
+  background-size: cover;
+}
