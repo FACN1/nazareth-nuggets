@@ -4,8 +4,10 @@
   "description": "Our app allows the user to share and gain information about the different events and locations",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app/src/server.js",
+    "test": "node app/test/test.js | tap-spec",
+    "cover": "./node_modules/.bin/istanbul cover app/test/test.js",
+    "dev": "./node_modules/.bin/nodemon app/src/server.js",
     "lint": "./node_modules/.bin/eslint './app/**/*.js'"
   },
   "pre-commit": [
@@ -33,6 +35,9 @@
     "eslint-plugin-node": "^4.2.2",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
-    "pre-commit": "^1.2.2"
+    "istanbul": "^0.4.5",
+    "pre-commit": "^1.2.2",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.6.3"
   }
 }
