@@ -9,7 +9,7 @@
   },
   "pre-commit": [
     "lint"
-  ]
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/FACN1/city-guide.git"
