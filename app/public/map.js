@@ -1,3 +1,5 @@
+/* global L */
+
 var bounds = L.latLngBounds([32.683154, 35.278158], [32.723174, 35.341721])
 var mymap = L.map('mapid', {
   center: [32.699, 35.303],
