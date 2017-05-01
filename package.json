@@ -22,7 +22,9 @@
   },
   "homepage": "https://github.com/FACN1/city-guide#readme",
   "dependencies": {
-    "express": "^4.15.2"
+    "env2": "^2.1.1",
+    "express": "^4.15.2",
+    "pg": "^6.1.5"
   },
   "devDependencies": {
     "eslint": "^3.19.0",

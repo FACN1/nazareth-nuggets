@@ -4,13 +4,13 @@ DROP TABLE IF EXISTS nuggets;
 
 CREATE TABLE nuggets(
   id SERIAL PRIMARY KEY,
-  x_coordinate INTEGER NOT NULL,
-  y_coordinate INTEGER NOT NULL,
-  category VARCHAR(20) NOT NULL,
-  title VARCHAR(30) NOT NULL,
+  lat DOUBLE PRECISION NOT NULL,
+  long DOUBLE PRECISION NOT NULL,
+  category VARCHAR(30) NOT NULL,
+  title VARCHAR(50) NOT NULL,
   description TEXT,
-  img_url TEXT,
-  author VARCHAR(15) NOT NULL
+  img_url VARCHAR(100),
+  author VARCHAR(30) NOT NULL
 )
 
-COMMIT;
+-- COMMIT;
