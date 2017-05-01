@@ -6,5 +6,5 @@ const app = express();
 // })
 
 app.listen(4000, function(){
-  console.log('The magic shit happens on port 4000!')
+  console.log('The free magic happens on port 4000!')
 });
