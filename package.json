@@ -4,8 +4,12 @@
   "description": "Our app allows the user to share and gain information about the different events and locations",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "./node_modules/.bin/eslint './+(src|test|database|views|static-map-prototype)/**/*.js'"
   },
+  "pre-commit": [
+    "lint"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/FACN1/city-guide.git"
@@ -15,5 +19,11 @@
   "bugs": {
     "url": "https://github.com/FACN1/city-guide/issues"
   },
-  "homepage": "https://github.com/FACN1/city-guide#readme"
+  "homepage": "https://github.com/FACN1/city-guide#readme",
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.1.3",
+    "eslint-plugin-import": "^2.2.0",
+    "pre-commit": "^1.2.2"
+  }
 }
