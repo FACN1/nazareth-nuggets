@@ -12,5 +12,3 @@ CREATE TABLE nuggets(
   img_url VARCHAR(100),
   author VARCHAR(30) NOT NULL
 )
-
--- COMMIT;
