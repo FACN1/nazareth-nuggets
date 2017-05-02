@@ -12,7 +12,7 @@ app.get('/all-nuggets', function (req, res) {
       console.log(err)
       return
     }
-    console.log('result is ', result.rows)
+    console.log('result is ', JSON.stringify(result.rows))
   })
 })
 

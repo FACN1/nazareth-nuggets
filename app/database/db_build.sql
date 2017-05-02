@@ -14,6 +14,6 @@ CREATE TABLE nuggets(
 );
 
 INSERT INTO nuggets (lat,long,category,title,description,img_url,author)
-VALUES (100,100,'food','bigwave','tsunami',null,'me');
+VALUES (100, 100, 'food', 'bigwave', 'tsunami', null, 'me');
 
 COMMIT;
