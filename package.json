@@ -27,9 +27,10 @@
   },
   "homepage": "https://github.com/FACN1/city-guide#readme",
   "dependencies": {
+    "body-parser": "^1.17.1",
+    "env2": "^2.1.1",
     "express": "^4.15.2",
     "leaflet": "^1.0.3",
-    "env2": "^2.1.1",
     "pg": "^6.1.5"
   },
   "devDependencies": {
