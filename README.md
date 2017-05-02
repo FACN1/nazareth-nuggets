@@ -1,8 +1,11 @@
-# city-guide
+# nazareth-nuggets
 
-Our app allows the user to share and gain information about the different events and locations
+Nazareth Nuggets is a platform for people to discover new things about Nazareth, and to contribute information for others to see.
 
-You may view our prototype [here](https://facn1.github.io/city-guide/dynamic-map-prototype)
+You may view our prototype [here](https://facn1.github.io/city-guide/dynamic-map-prototype).
+See it live on heroku [here](https://nazareth-nuggets.herokuapp.com/).
+
+## Planning and Ideation Phase
 
 ### User goals:
 * See information about all of the different events and locations in the city
@@ -38,8 +41,6 @@ You may view our prototype [here](https://facn1.github.io/city-guide/dynamic-map
 * As a foodie
 > who is interested in seeing all of the good shwarma places, I want to see images of all of the shwarma places from all over Nazareth so that I'll find the best shwarma place
 
-
-
-## Wireframes
+## Wireframes for the MVP
 ![Wireframe](https://github.com/FACN1/city-guide/blob/master/ViewWireframe.JPG "Wireframe")
 ![Wireframe](https://github.com/FACN1/city-guide/blob/master/addWireFrame.jpg "Wireframe")
