@@ -10,9 +10,9 @@ app.get('/all-nuggets', function (req, res) {
   query.getAll((err, result) => {
     if (err) {
       console.log(err)
-      return
+      res.send('DATABSE ERROR')
     }
-    console.log('result is ', JSON.stringify(result.rows))
+    res.json(result.rows)
   })
 })
 

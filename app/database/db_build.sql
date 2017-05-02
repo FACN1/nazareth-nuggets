@@ -13,7 +13,7 @@ CREATE TABLE nuggets(
   author VARCHAR(30) NOT NULL
 );
 
-INSERT INTO nuggets (lat,long,category,title,description,img_url,author)
+INSERT INTO nuggets (lat, long, category, title, description, img_url, author)
 VALUES (12.3452, -43.314134, 'food', 'Al Waked', 'A great shwarma place and a great cheeky shwarma', null, 'Elias');
 
 COMMIT;
