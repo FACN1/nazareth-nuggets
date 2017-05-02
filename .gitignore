@@ -1,5 +1,5 @@
-vibage/
-dynamic-map-prototype/private_keys.js
 node_modules/
-npm-debug.log
+coverage/
 config.env
+npm-debug.log
+vibage/
