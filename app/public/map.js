@@ -25,7 +25,7 @@
   }
 
   function onLocationError (e) {
-    window.alert(e.message)
+    window.confirm(e.message = 'Your location was not found')
   }
 
   mymap.on('locationerror', onLocationError)
