@@ -7,10 +7,10 @@
   },
   "main": "app/src/server.js",
   "scripts": {
-    "start": "node app/src/startServer.js",
+    "start": "node app/src/start_server.js",
     "test": "node app/test/test.js | tap-spec",
     "cover": "./node_modules/.bin/istanbul cover app/test/test.js",
-    "dev": "./node_modules/.bin/nodemon app/src/startServer.js",
+    "dev": "./node_modules/.bin/nodemon app/src/start_server.js",
     "lint": "./node_modules/.bin/eslint './app/**/*.js'"
   },
   "pre-commit": [
