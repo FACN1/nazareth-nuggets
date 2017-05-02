@@ -2,7 +2,10 @@
   "name": "city-guide",
   "version": "1.0.0",
   "description": "Our app allows the user to share and gain information about the different events and locations",
-  "main": "index.js",
+  "engines": {
+    "node": "6.9.2"
+  },
+  "main": "app/src/server.js",
   "scripts": {
     "start": "node app/src/server.js",
     "test": "node app/test/test.js | tap-spec",

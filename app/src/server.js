@@ -2,6 +2,8 @@ const path = require('path')
 const express = require('express')
 const app = express()
 
+const port = process.env.port || 8111
+
 const staticFilesPath = path.join(__dirname, '../public')
 app.use(express.static(staticFilesPath))
 
@@ -9,6 +11,6 @@ app.use(express.static(staticFilesPath))
 //   res.send('MARIOOOOOOOO pshu pshu pshu')
 // })
 
-app.listen(4000, function () {
-  console.log('The magic happens on port 4000!')
+app.listen(port, function () {
+  console.log(`The magic happens on port ${port}!`)
 })
