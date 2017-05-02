@@ -12,7 +12,7 @@ app.get('/all-nuggets', function (req, res) {
   query.getAll((err, result) => {
     if (err) {
       console.log(err)
-      res.send('DATABSE ERROR')
+      return res.send('DATABASE ERROR')
     }
     res.json(result.rows)
   })
