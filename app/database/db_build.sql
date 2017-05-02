@@ -11,6 +11,9 @@ CREATE TABLE nuggets(
   description TEXT,
   img_url VARCHAR(100),
   author VARCHAR(30) NOT NULL
-)
+);
 
--- COMMIT;
+INSERT INTO nuggets (lat,long,category,title,description,img_url,author)
+VALUES (100,100,'food','bigwave','tsunami',null,'me');
+
+COMMIT;
