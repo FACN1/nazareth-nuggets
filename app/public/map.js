@@ -1,5 +1,22 @@
-/* global L */
-(function () {
+/* global L XMLHttpRequest */
+
+var nazarethNuggets = (function () { // eslint-disable-line
+
+  function requestNuggets (method, url, callback) {
+    var xhr = new XMLHttpRequest()
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        var response = JSON.parse(xhr.responseText)
+        callback(null, response)
+      }
+      if (xhr.status === 500) {
+        callback(null, 'err')
+      }
+    }
+    xhr.open(method, url)
+    xhr.send()
+  }
+
   var bounds = L.latLngBounds([32.683154, 35.278158], [32.723174, 35.341721])
   var mymap = L.map('map', {
     center: [32.699, 35.303],
@@ -13,6 +30,13 @@
     id: 'mapbox.light',
     accessToken: 'pk.eyJ1Ijoia2FyeXVtIiwiYSI6ImNqMjAzNGU4ZjAxa3EycW4xazFxcHZ6a2QifQ.m_dNO1l1sMkM7r4d5nlRRQ'
   }).addTo(mymap)
+
+  requestNuggets('GET', '/all-nuggets', function (err, res) {
+    if (err) {
+      return err
+    }
+    console.log(res)
+  })
 
   mymap.locate({setView: true, maxZoom: 20})
 
