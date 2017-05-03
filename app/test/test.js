@@ -11,7 +11,6 @@ tape('home route test', t => {
   request(app)
     .get('/')
     .end(function (req, res) {
-      // console.log(res)
       t.ok(res.text.includes('<link rel="stylesheet" href="./main.css">'), 'test string is served up')
       t.end()
     })
