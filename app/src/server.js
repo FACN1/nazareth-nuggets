@@ -4,12 +4,11 @@ const query = require('./queries.js')
 const app = express()
 const bodyParser = require('body-parser')
 
-const port = process.env.PORT || 8111
 const staticFilesPath = path.join(__dirname, '../public')
 
 app.use(express.static(staticFilesPath))
 app.use(bodyParser.json())
-app.use(express.json())
+// app.use(express.json())
 
 app.get('/all-nuggets', function (req, res) {
   query.getAll((err, result) => {
@@ -20,7 +19,6 @@ app.get('/all-nuggets', function (req, res) {
     res.json(result.rows)
   })
 })
-
 app.post('/add-nugget', function (req, res) {
   // get the data from the request
   const data = req.body
@@ -34,6 +32,4 @@ app.post('/add-nugget', function (req, res) {
   })
 })
 
-app.listen(port, function () {
-  console.log(`The magic happens on port ${port}!`)
-})
+module.exports = app
