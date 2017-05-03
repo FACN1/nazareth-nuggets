@@ -1,5 +1,22 @@
-/* global L */
-(function () {
+/* global L XMLHttpRequest */
+
+var nazarethNuggets = (function () { // eslint-disable-line
+
+  function requestNuggets (method, url, callback) {
+    var xhr = new XMLHttpRequest()
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        var response = JSON.parse(xhr.responseText)
+        callback(null, response)
+      }
+      if (xhr.status === 500) {
+        callback(new Error('Status code:' + xhr.status))
+      }
+    }
+    xhr.open(method, url)
+    xhr.send()
+  }
+
   var icons = {
     food: L.icon({
       iconUrl: './assets/food.png',
@@ -11,10 +28,6 @@
     })
   }
 
-  var nuggets = [
-    {id: 1, lat: 32.691, long: 35.309, category: 'food'},
-    {id: 2, lat: 32.690, long: 35.300, category: 'nature'}
-  ]
   function addIconsToMap (nuggets) {
   // nuggets is an array of objects which holds the data from the db
     nuggets.forEach(function (nugget) {
@@ -58,12 +71,23 @@
 
   function onLocationFound (e) {
     var radius = e.accuracy / 2
-
     L.marker(e.latlng).addTo(mymap)
     L.circle(e.latlng, radius).addTo(mymap)
   }
 
   mymap.on('locationfound', onLocationFound)
+
+  var nuggets = [
+    {id: 1, lat: 32.691, long: 35.309, category: 'food'},
+    {id: 2, lat: 32.690, long: 35.300, category: 'nature'}
+  ]
+
+  requestNuggets('GET', '/all-nuggets', function (err, res) {
+    if (err) {
+      return err
+    }
+    console.log(res)
+  })
 
   addIconsToMap(nuggets)
 })()
