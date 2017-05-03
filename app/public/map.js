@@ -10,7 +10,7 @@ var nazarethNuggets = (function () { // eslint-disable-line
         callback(null, response)
       }
       if (xhr.status === 500) {
-        callback(null, 'err')
+        callback(new Error('Status code:' + xhr.status))
       }
     }
     xhr.open(method, url)

@@ -21,7 +21,6 @@ app.get('/all-nuggets', function (req, res) {
 })
 app.post('/add-nugget', function (req, res) {
   // get the data from the request
-  console.log('received request');
   const data = req.body
   // add to the database
   query.addNugget(data, (err) => {
