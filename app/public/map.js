@@ -20,14 +20,8 @@
     var radius = e.accuracy / 2
 
     L.marker(e.latlng).addTo(mymap)
-
     L.circle(e.latlng, radius).addTo(mymap)
   }
 
-  function onLocationError (e) {
-    window.confirm(e.message = 'Your location was not found')
-  }
-
-  mymap.on('locationerror', onLocationError)
   mymap.on('locationfound', onLocationFound)
 })()
