@@ -1,10 +1,26 @@
-/* global L createIcons */
+/* global L */
 (function () {
-  var bounds = L.latLngBounds([32.683154, 35.278158], [32.723174, 35.341721])
+  var createIcons = function () {
+    return {
+      food: L.icon({
+        iconUrl: './assets/food.png',
+        iconSize: [24, 24]
+      }),
+      nature: L.icon({
+        iconUrl: './assets/leaf.png',
+        iconSize: [24, 24]
+      })
+    }
+  }
+
   var mymap = L.map('map', {
     center: [32.699, 35.303],
     zoom: 13,
-    maxBounds: bounds,
+    maxBounds: [
+      // bounds for nazareth
+      [32.683154, 35.278158],
+      [32.723174, 35.341721]
+    ],
     minZoom: 13
   })
 
