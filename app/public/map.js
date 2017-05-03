@@ -1,16 +1,40 @@
 /* global L */
 (function () {
-  var createIcons = function () {
-    return {
-      food: L.icon({
-        iconUrl: './assets/food.png',
-        iconSize: [24, 24]
-      }),
-      nature: L.icon({
-        iconUrl: './assets/leaf.png',
-        iconSize: [24, 24]
+  var icons = {
+    food: L.icon({
+      iconUrl: './assets/food.png',
+      iconSize: [24, 24]
+    }),
+    nature: L.icon({
+      iconUrl: './assets/leaf.png',
+      iconSize: [24, 24]
+    })
+  }
+
+  var nuggets = [
+    {id: 1, lat: 32.691, long: 35.309, category: 'food'},
+    {id: 2, lat: 32.690, long: 35.300, category: 'nature'}
+  ]
+  function addIconsToMap (nuggets) {
+  // nuggets is an array of objects which holds the data from the db
+    nuggets.forEach(function (nugget) {
+      // for each nugget we want to make a marker and put it on the map
+
+      L.marker([nugget.lat, nugget.long], {
+        id: nugget.id,
+        category: nugget.category,
+        title: nugget.title,
+        description: nugget.description,
+        img_url: nugget.img_url,
+        author: nugget.author,
+        icon: icons[nugget.category]
       })
-    }
+      .on('click', function (e) {
+        // to be implemented
+        console.log(e.target.options)
+      })
+      .addTo(mymap)
+    })
   }
 
   var mymap = L.map('map', {
@@ -40,32 +64,6 @@
   }
 
   mymap.on('locationfound', onLocationFound)
-
-  // calls the createIcons function so it can get the icon
-  var icons = createIcons()
-
-  var nuggets
-
-  function addIconsToMap (nuggets) {
-  // nuggets is an array of objects which holds the data from the db
-    nuggets.forEach(function (nugget) {
-      // for each nugget we want to make a marker and put it on the map
-
-      L.marker([nugget.lat, nugget.long], {
-        id: nugget.id,
-        category: nugget.category,
-        title: nugget.title,
-        description: nugget.description,
-        img_url: nugget.img_url,
-        author: nugget.author,
-        icon: icons[nugget.category]
-      })
-      .on('click', function (e) {
-        console.log(e.target.options)
-      })
-      .addTo(mymap)
-    })
-  }
 
   addIconsToMap(nuggets)
 })()
