@@ -1,4 +1,4 @@
-/* global L */
+/* global L createIcons */
 (function () {
   var bounds = L.latLngBounds([32.683154, 35.278158], [32.723174, 35.341721])
   var mymap = L.map('map', {
@@ -14,7 +14,7 @@
     accessToken: 'pk.eyJ1Ijoia2FyeXVtIiwiYSI6ImNqMjAzNGU4ZjAxa3EycW4xazFxcHZ6a2QifQ.m_dNO1l1sMkM7r4d5nlRRQ'
   }).addTo(mymap)
 
-  mymap.locate({setView: true, maxZoom: 20})
+  mymap.locate({setView: true})
 
   function onLocationFound (e) {
     var radius = e.accuracy / 2
@@ -24,4 +24,32 @@
   }
 
   mymap.on('locationfound', onLocationFound)
+
+  // calls the createIcons function so it can get the icon
+  var icons = createIcons()
+
+  var nuggets
+
+  function addIconsToMap (nuggets) {
+  // nuggets is an array of objects which holds the data from the db
+    nuggets.forEach(function (nugget) {
+      // for each nugget we want to make a marker and put it on the map
+
+      L.marker([nugget.lat, nugget.long], {
+        id: nugget.id,
+        category: nugget.category,
+        title: nugget.title,
+        description: nugget.description,
+        img_url: nugget.img_url,
+        author: nugget.author,
+        icon: icons[nugget.category]
+      })
+      .on('click', function (e) {
+        console.log(e.target.options)
+      })
+      .addTo(mymap)
+    })
+  }
+
+  addIconsToMap(nuggets)
 })()
