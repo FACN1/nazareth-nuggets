@@ -30,6 +30,12 @@ html, body {
   z-index: -1;
 }
 
+.center-button {
+  bottom: 10%;
+  position: absolute;
+  right: 2em;
+}
+
 /*
 2) HEADER
 */
