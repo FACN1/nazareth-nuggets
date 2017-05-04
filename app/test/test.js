@@ -6,7 +6,7 @@ tape('home route test', t => {
   request(app)
     .get('/')
     .end(function (req, res) {
-      t.ok(res.text.includes('<link rel="stylesheet" href="./main.css">'), 'test string is served up')
+      t.ok(res.text.includes('<title>Nazareth Nuggets</title>'), 'request to / route should return html page containing correct title')
       t.end()
     })
 })

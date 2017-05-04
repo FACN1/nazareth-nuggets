@@ -1,0 +1,44 @@
+/*
+CONTENTS:
+1) GENERAL
+2) HEADER
+3) SLIDE-UP-TAB
+4) NUGGET-INFO
+5) ADD-FORM
+6) LOCATION-SELECT
+*/
+
+/*
+1) GENERAL
+*/
+
+html, body {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+/*
+2) HEADER
+*/
+
+/*
+3) SLIDE-UP-TAB
+*/
+
+/*
+4) NUGGET-INFO
+*/
+
+/*
+5) ADD-FORM
+*/
+
+/*
+6) LOCATION-SELECT
+*/
