@@ -8,6 +8,12 @@ CONTENTS:
 6) LOCATION-SELECT
 */
 
+:root {
+  --header-background: #55D6BE;
+  --title-font: 'Comfortaa', cursive;
+
+}
+
 /*
 1) GENERAL
 */
@@ -27,7 +33,28 @@ html, body {
 /*
 2) HEADER
 */
+.header {
+  background: var(--header-background);
+  z-index: 1000;
+  position: absolute;
+  width: 100%;
+  height: 3em;
+}
 
+.app-title {
+  text-align: center;
+  margin:0%;
+  transform: translateY(30%);
+  font-family: var(--title-font);
+  font-size: 1.8rem;
+}
+
+.add-nugget-button{
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-30%);
+}
 /*
 3) SLIDE-UP-TAB
 */
