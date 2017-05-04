@@ -90,4 +90,9 @@ var nazarethNuggets = (function () { // eslint-disable-line
   })
 
   addIconsToMap(nuggets)
+
+  var centerButton = document.querySelector('.center-button')
+  centerButton.addEventListener('click', function (e) {
+    mymap.locate({setView: true})
+  })
 })()

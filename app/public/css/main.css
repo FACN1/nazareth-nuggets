@@ -23,6 +23,13 @@ html, body {
   height: 100%;
 }
 
+.center-button {
+  bottom: 10%;
+  position: absolute;
+  z-index: 1000;
+  right: 2em;
+}
+
 /*
 2) HEADER
 */
