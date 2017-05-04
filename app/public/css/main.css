@@ -27,7 +27,7 @@ html, body {
 #map {
   width: 100%;
   height: 100%;
-  z-index: -1;
+  z-index: 1;
 }
 
 /*
@@ -85,6 +85,7 @@ html, body {
 4) NUGGET-INFO
 */
 .nugget-info-tab {
+  display: none;
   top: 20%;
   left: 0%;
 
@@ -117,3 +118,37 @@ html, body {
 /*
 6) LOCATION-SELECT
 */
+.location-select-display {
+  z-index: 100;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    transparent 35%,
+    rgba(0, 0, 0, 0.2) 45%
+    );
+}
+
+.location-select-pin {
+  position: absolute;
+  /*height: 4em;
+  width: 4em;*/
+  left: 50%;
+  top: 50%;
+  animation: bounce 7s infinite;
+  transform: translate(-50%, -100%);
+}
+
+@keyframes bounce {
+  0%   { transform: translate(-50%, -100%) }
+  4%   { transform: translate(-50%, -120%) }
+  8%   { transform: translate(-50%, -100%) }
+  12%   { transform: translate(-50%, -120%) }
+  16%   { transform: translate(-50%, -100%) }
+  20%   { transform: translate(-50%, -120%) }
+  24% { transform: translate(-50%, -100%) }
+}
