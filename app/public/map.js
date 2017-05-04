@@ -2,6 +2,19 @@
 
 var nazarethNuggets = (function () { // eslint-disable-line
 
+  function generateMockNuggets (quantity, categories, latBounds, lngBounds) {
+    var nuggets = []
+    for (var i = 0; i < quantity; i++) {
+      nuggets.push({
+        id: i,
+        category: categories[Math.floor(Math.random() * categories.length)],
+        lat: latBounds[0] + (Math.random() * (latBounds[1] - latBounds[0])),
+        long: lngBounds[0] + (Math.random() * (lngBounds[1] - lngBounds[0]))
+      })
+    }
+    return nuggets
+  }
+
   function requestNuggets (method, url, callback) {
     var xhr = new XMLHttpRequest()
     xhr.onreadystatechange = function () {
@@ -77,16 +90,29 @@ var nazarethNuggets = (function () { // eslint-disable-line
 
   mymap.on('locationfound', onLocationFound)
 
-  var nuggets = [
-    {id: 1, lat: 32.691, long: 35.309, category: 'food'},
-    {id: 2, lat: 32.690, long: 35.300, category: 'nature'}
-  ]
+  var nuggets = generateMockNuggets(
+    100,
+    ['food', 'nature'],
+    [32.683154, 32.723174],
+    [35.278158, 35.341721]
+  )
+
+  console.log(nuggets)
 
   requestNuggets('GET', '/all-nuggets', function (err, res) {
     if (err) {
       return err
     }
     console.log(res)
+  })
+
+  var zoomLevel = 13
+
+  mymap.on('zoomstart', function () {
+    console.log('zoomstart event')
+
+    zoomLevel = mymap.getZoom()
+    console.log('zoom variable: ' + zoomLevel)
   })
 
   addIconsToMap(nuggets)
