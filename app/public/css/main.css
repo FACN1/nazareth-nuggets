@@ -26,7 +26,6 @@ html, body {
 .center-button {
   bottom: 10%;
   position: absolute;
-  z-index: 1000;
   right: 2em;
 }
 
