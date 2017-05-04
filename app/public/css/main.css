@@ -71,9 +71,16 @@ html, body {
   font-family: 'Comfortaa', cursive;
 }
 
+.nugget-author {
+  margin-top: 0em;
+  font-size: 0.8em;
+}
+
 .nugget-image {
-  height: 10em;
-  width: 10em;
+  max-width: 100%;
+  max-height: 12em;
+  margin-top: 0.3em;
+  border-radius: 0.3em;
 }
 
 /*
