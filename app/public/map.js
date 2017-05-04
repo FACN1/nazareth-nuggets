@@ -52,6 +52,7 @@ var nazarethNuggets = (function () { // eslint-disable-line
 
   var mymap = L.map('map', {
     center: [32.699, 35.303],
+    zoomControl: false,
     zoom: 13,
     maxBounds: [
       // bounds for nazareth

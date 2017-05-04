@@ -37,7 +37,7 @@ html, body {
   z-index: 1000;
   position: absolute;
   width: 100%;
-  height: 8%;
+  height: 3em;
 }
 
 .app-title {
@@ -52,7 +52,7 @@ html, body {
   position: absolute;
   right: 5%;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-30%);
 }
 /*
 3) SLIDE-UP-TAB
