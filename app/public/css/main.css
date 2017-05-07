@@ -126,8 +126,7 @@ html, body {
 /*
 6) LOCATION-SELECT
 */
-.location-select-display {
-  display: none;
+.location-select-display.visible {
   z-index: 100;
   /* to allow map events to happen 'under' this screen */
   pointer-events: none;
@@ -154,6 +153,7 @@ html, body {
 }
 
 .location-select-tick {
+  pointer-events: initial;
   position: absolute;
   left: 50%;
   top: 75%;

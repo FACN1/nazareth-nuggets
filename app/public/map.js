@@ -93,8 +93,20 @@ var nazarethNuggets = (function () { // eslint-disable-line
 
   addIconsToMap(nuggets)
 
+  var locationSelector = document.querySelector('.location-select-display')
   var centerButton = document.querySelector('.center-button')
   centerButton.addEventListener('click', function (e) {
     mymap.locate({setView: true})
+  })
+
+  var tickButton = document.querySelector('.location-select-tick')
+  tickButton.addEventListener('click', function (e) {
+    locationSelector.classList.toggle('visible')
+    // toggle form tab not visible -- future goooal
+  })
+
+  var infoCrossBtn = document.querySelector('.location-select-cross')
+  infoCrossBtn.addEventListener('click', function (e) {
+    locationSelector.classList.toggle('visible')
   })
 })()
