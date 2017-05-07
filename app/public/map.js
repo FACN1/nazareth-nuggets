@@ -65,7 +65,9 @@ var nazarethNuggets = (function () { // eslint-disable-line
 
   var mymap = L.map('map', {
     center: [32.699, 35.303],
-    zoom: 13,
+    zoomControl: false,
+    attributionControl: false,
+    zoom: 15,
     maxBounds: [
       // bounds for nazareth
       [32.683154, 35.278158],
@@ -80,7 +82,7 @@ var nazarethNuggets = (function () { // eslint-disable-line
     accessToken: 'pk.eyJ1Ijoia2FyeXVtIiwiYSI6ImNqMjAzNGU4ZjAxa3EycW4xazFxcHZ6a2QifQ.m_dNO1l1sMkM7r4d5nlRRQ'
   }).addTo(mymap)
 
-  mymap.locate({setView: true})
+  // mymap.locate({setView: true})
 
   function onLocationFound (e) {
     var radius = e.accuracy / 2
@@ -116,4 +118,9 @@ var nazarethNuggets = (function () { // eslint-disable-line
   })
 
   addIconsToMap(nuggets)
+
+  var centerButton = document.querySelector('.center-button')
+  centerButton.addEventListener('click', function (e) {
+    mymap.locate({setView: true})
+  })
 })()

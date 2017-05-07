@@ -1,0 +1,187 @@
+/*
+CONTENTS:
+1) GENERAL
+2) HEADER
+3) SLIDE-UP-TAB
+4) NUGGET-INFO
+5) ADD-FORM
+6) LOCATION-SELECT
+*/
+
+:root {
+  --header-background: #55D6BE;
+  --title-font: 'Comfortaa', cursive;
+  --tick-button-colour: green;
+  --cross-button-colour: red;
+}
+
+/*
+1) GENERAL
+*/
+html, body {
+  position: relative;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.center-button {
+  bottom: 10%;
+  position: absolute;
+  right: 2em;
+  z-index: 10;
+}
+
+/*
+2) HEADER
+*/
+.header {
+  background: var(--header-background);
+  z-index: 100;
+  position: absolute;
+  width: 100%;
+  height: 3em;
+}
+
+.app-title {
+  text-align: center;
+  margin: 0%;
+  transform: translateY(30%);
+  font-family: var(--title-font);
+  font-size: 1.8rem;
+}
+
+.add-nugget-button{
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-30%);
+}
+/*
+3) SLIDE-UP-TAB
+*/
+.slide-up-tab {
+  position: absolute;
+
+  width: 95%;
+  box-sizing: border-box;
+
+  margin: 0em 2.5%;
+  padding: 0.8em 1.6em;
+  border-radius: 0.7em;
+
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  font-family: 'Lato', sans-serif;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.slide-up-tab-x-button {
+  position: absolute;
+  right: 0.5em;
+  top: 0.2em;
+}
+
+/*
+4) NUGGET-INFO
+*/
+.nugget-info-tab {
+  display: none;
+  top: 20%;
+  left: 0%;
+
+  height: 80%;
+
+  border-top: 0.4em solid rgb(255, 178, 53);
+}
+
+.nugget-title {
+  margin: 0.5em 0em;
+  font-family: 'Comfortaa', cursive;
+}
+
+.nugget-author {
+  margin-top: 0em;
+  font-size: 0.8em;
+}
+
+.nugget-image {
+  max-width: 100%;
+  max-height: 12em;
+  margin-top: 0.3em;
+  border-radius: 0.3em;
+}
+
+/*
+5) ADD-FORM
+*/
+
+/*
+6) LOCATION-SELECT
+*/
+.location-select-display {
+  display: none;
+  z-index: 100;
+  /* to allow map events to happen 'under' this screen */
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    transparent 33%,
+    rgba(0, 0, 0, 0.4) 39%
+    );
+}
+
+.location-select-pin {
+  position: absolute;
+  /*height: 4em;
+  width: 4em;*/
+  left: 50%;
+  top: 50%;
+  animation: single-bounce 0.4s alternate infinite;
+  transform: translate(-50%, -100%);
+}
+
+.location-select-tick {
+  position: absolute;
+  left: 50%;
+  top: 75%;
+  transform: translateX(-50%);
+  color: var(--tick-button-colour);
+  background: radial-gradient(circle, white 55%, transparent 45%);
+}
+
+.location-select-cross {
+  position: absolute;
+  left: 50%;
+  top: 90%;
+  transform: translateX(-50%);
+  color: var(--cross-button-colour);
+  background: radial-gradient(circle, white 55%, transparent 45%);
+}
+
+@keyframes single-bounce {
+  0%   { transform: translate(-50%, -100%) }
+  100%   { transform: translate(-50%, -120%) }
+}
+
+@keyframes bounce {
+  0%   { transform: translate(-50%, -100%) }
+  4%   { transform: translate(-50%, -120%) }
+  8%   { transform: translate(-50%, -100%) }
+  12%   { transform: translate(-50%, -120%) }
+  16%   { transform: translate(-50%, -100%) }
+  20%   { transform: translate(-50%, -120%) }
+  24% { transform: translate(-50%, -100%) }
+}
