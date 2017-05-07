@@ -99,8 +99,8 @@ var nazarethNuggets = (function () { // eslint-disable-line
     mymap.locate({setView: true})
   })
 
-  var tickButton = document.querySelector('.location-select-tick')
-  tickButton.addEventListener('click', function (e) {
+  var locationSelectTick = document.querySelector('.location-select-tick')
+  locationSelectTick.addEventListener('click', function (e) {
     locationSelector.classList.toggle('visible')
     // toggle form tab not visible -- future goooal
   })
