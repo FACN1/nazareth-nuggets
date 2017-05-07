@@ -105,8 +105,8 @@ var nazarethNuggets = (function () { // eslint-disable-line
     // toggle form tab not visible -- future goooal
   })
 
-  var infoCrossBtn = document.querySelector('.location-select-cross')
-  infoCrossBtn.addEventListener('click', function (e) {
+  var locationSelectCross = document.querySelector('.location-select-cross')
+  locationSelectCross.addEventListener('click', function (e) {
     locationSelector.classList.toggle('visible')
   })
 })()
