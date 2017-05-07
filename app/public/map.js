@@ -104,7 +104,7 @@ var nazarethNuggets = (function () { // eslint-disable-line
     accessToken: 'pk.eyJ1Ijoia2FyeXVtIiwiYSI6ImNqMjAzNGU4ZjAxa3EycW4xazFxcHZ6a2QifQ.m_dNO1l1sMkM7r4d5nlRRQ'
   }).addTo(mymap)
 
-  // mymap.locate({setView: true})
+  mymap.locate({setView: true})
 
   function onLocationFound (e) {
     var radius = e.accuracy / 2
