@@ -53,7 +53,8 @@ var nazarethNuggets = (function () { // eslint-disable-line
   var mymap = L.map('map', {
     center: [32.699, 35.303],
     zoomControl: false,
-    zoom: 13,
+    attributionControl: false,
+    zoom: 15,
     maxBounds: [
       // bounds for nazareth
       [32.683154, 35.278158],
@@ -68,7 +69,7 @@ var nazarethNuggets = (function () { // eslint-disable-line
     accessToken: 'pk.eyJ1Ijoia2FyeXVtIiwiYSI6ImNqMjAzNGU4ZjAxa3EycW4xazFxcHZ6a2QifQ.m_dNO1l1sMkM7r4d5nlRRQ'
   }).addTo(mymap)
 
-  mymap.locate({setView: true})
+  // mymap.locate({setView: true})
 
   function onLocationFound (e) {
     var radius = e.accuracy / 2
