@@ -127,7 +127,9 @@ html, body {
 6) LOCATION-SELECT
 */
 .location-select-display {
+  display: none;
   z-index: 100;
+  /* to allow map events to happen 'under' this screen */
   pointer-events: none;
   position: absolute;
   top: 0;
