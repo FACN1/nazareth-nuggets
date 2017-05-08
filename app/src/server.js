@@ -57,7 +57,7 @@ app.get('/sign-s3', function (req, res) {
     }
     const returnData = {
       signedRequest: data,
-      url: `http://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
+      url: 'http://' + S3_BUCKET + '.s3.amazonaws.com/' + fileName
     }
     res.write(JSON.stringify(returnData))
     res.end()

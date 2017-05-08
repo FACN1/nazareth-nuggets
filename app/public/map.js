@@ -99,25 +99,25 @@ var nazarethNuggets = (function () { // eslint-disable-line
   })
 
   // Amazon S3
-  document.querySelector('.class-unknown').onchange = function () {
-    const files = document.querySelector('.class-unknown').files
+  document.querySelector('.image-input').onchange = function () {
+    const files = document.querySelector('.image-input').files
     const file = files[0]
     if (file === null) {
-      console.log('No file selected')
+      // should send the user that he didn't uplaod a file or it wasn't succeful
     }
     getSignedRequest(file)
   }
 
   function getSignedRequest (file) {
     const xhr = new XMLHttpRequest()
-    xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`)
+    xhr.open('GET', '/sign-s3?file-name=' + file.name + '&file-type=' + file.type)
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
           const response = JSON.parse(xhr.responseText)
           uploadFile(file, response.signedRequest, response.url)
         } else {
-          console.log('Could not get signed URL.')
+          // should send the user a message saying that uplading the image wasn't succeful and try again
         }
       }
     }
@@ -131,9 +131,9 @@ var nazarethNuggets = (function () { // eslint-disable-line
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
           // adds the url to a hidden input in the form to send it to the server
-          document.querySelector('.hidden-class-inform').value = url
+          document.querySelector('.hidden-input-in-form').value = url
         } else {
-          console.log('Could not upload file.')
+          // should send the user a message saying that uplading the image wasn't succeful and try again
         }
       }
     }
