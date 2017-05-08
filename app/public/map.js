@@ -99,12 +99,11 @@ var nazarethNuggets = (function () { // eslint-disable-line
 
   mymap.on('locationfound', onLocationFound)
 
-  var nuggets
   // these variables are undefined until the db results come back
   var smallIconsLayer
   var bigIconsLayer
 
-  requestNuggets('GET', '/all-nuggets', function (err, res) {
+  requestNuggets('GET', '/all-nuggets', function (err, nuggets) {
     if (err) {
       // need to improve this
       return err
