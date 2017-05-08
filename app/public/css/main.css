@@ -68,6 +68,9 @@ html, body {
 */
 .slide-up-tab {
   position: absolute;
+  top: 100%;
+  left: 0%;
+  z-index: 200;
 
   width: 95%;
   box-sizing: border-box;
@@ -81,6 +84,7 @@ html, body {
 
   font-family: 'Lato', sans-serif;
   background: rgba(255, 255, 255, 0.9);
+  transition: all 0.5s;
 }
 
 .slide-up-tab-x-button {
@@ -92,11 +96,8 @@ html, body {
 /*
 4) NUGGET-INFO
 */
-.nugget-info-tab {
-  display: none;
+.nugget-info-tab.visible {
   top: 20%;
-  left: 0%;
-
   height: 80%;
 
   border-top: 0.4em solid rgb(255, 178, 53);
