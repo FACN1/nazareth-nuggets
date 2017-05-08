@@ -92,10 +92,10 @@ html, body {
 /*
 4) NUGGET-INFO
 */
-.nugget-info-tab {
-  display: none;
+.nugget-info-tab.visible {
   top: 20%;
   left: 0%;
+  z-index: 10;
 
   height: 80%;
 
@@ -141,6 +141,7 @@ html, body {
     rgba(0, 0, 0, 0.4) 39%
     );
 }
+
 
 .location-select-pin {
   position: absolute;
