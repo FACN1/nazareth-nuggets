@@ -98,3 +98,122 @@ var nazarethNuggets = (function () { // eslint-disable-line
     mymap.locate({setView: true})
   })
 })()
+
+var addNuggetButton = document.querySelector('.add-nugget-button')
+addNuggetButton.addEventListener('click', function (e) {
+  // if (e.defaultPrevented) return
+
+  var ff1 = document.createElement('form')
+
+  var para1 = document.createElement('P')
+  var paraPr1 = document.createTextNode('Title: ')
+  para1.appendChild(paraPr1)
+
+  var txtbox1 = document.createElement('input')
+  txtbox1.setAttribute('type', 'text')
+
+  ff1.appendChild(para1)
+  ff1.appendChild(txtbox1)
+  document.getElementsByClassName('slide-up-tab-content')[0].appendChild(ff1)
+
+  var para2 = document.createElement('P')
+  var paraPr2 = document.createTextNode('Category: ')
+  para2.appendChild(paraPr2)
+
+  var DropDown = document.createElement('select') // input element, text
+  DropDown.setAttribute('name', 'dropp') // maybe change?
+  DropDown.setAttribute('value', 'Food') // maybe change?
+
+  var option1 = document.createElement('option') // input element, text
+  option1.textContent = 'Food'
+  DropDown.appendChild(option1)
+  var option2 = document.createElement('option') // input element, text
+  option2.textContent = 'Info'
+  DropDown.appendChild(option2)
+  var option3 = document.createElement('option') // input element, text
+  option3.textContent = 'Fun Fact!'
+  DropDown.appendChild(option3)
+  var option4 = document.createElement('option') // input element, text
+  option4.textContent = 'View'
+  DropDown.appendChild(option4)
+
+  ff1.appendChild(para2)
+  ff1.appendChild(DropDown)
+  document.getElementsByClassName('slide-up-tab-content')[0].appendChild(ff1)
+
+  var para3 = document.createElement('P')
+  var paraPr3 = document.createTextNode('Upload Image: ')
+  para3.appendChild(paraPr3)
+
+  var inputBtn1 = document.createElement('input')  // input element, text
+  inputBtn1.setAttribute('type', 'file')
+  inputBtn1.setAttribute('name', 'inputBtn01')
+
+  ff1.appendChild(para3)
+  ff1.appendChild(inputBtn1)
+
+  document.getElementsByClassName('slide-up-tab-content')[0].appendChild(ff1)
+
+  var para5 = document.createElement('P')
+  var paraPr5 = document.createTextNode('Description: ')
+  para5.appendChild(paraPr5)
+
+  var txtbox2 = document.createElement('textarea')
+  var t = document.createTextNode('')
+  txtbox2.appendChild(t)
+
+  ff1.appendChild(para5)
+  ff1.appendChild(txtbox2)
+
+  document.getElementsByClassName('slide-up-tab-content')[0].appendChild(ff1)
+
+  var para6 = document.createElement('P')
+  var paraPr6 = document.createTextNode('Your name: ')
+  para6.appendChild(paraPr6)
+
+  var txtbox3 = document.createElement('input')
+  txtbox3.setAttribute('type', 'text')
+
+  ff1.appendChild(para6)
+  ff1.appendChild(txtbox3)
+
+  document.getElementsByClassName('slide-up-tab-content')[0].appendChild(ff1)
+  // document.myFunction.onload = addElement
+  // document.body.appendChild(addNuggetButton)
+
+  //  var ff3 = document.createElement("form");
+  // f.setAttribute('method',"post");
+  // f.setAttribute('action',"submit.php");
+  //  document.body.appendChild(ff3);
+ /// ///var i = document.createElement("input"); //input element, text
+ // i.setAttribute('type',"text");
+ // i.setAttribute('name',"username");
+ /// ///    ff3.appendChild(i);
+// var textbox = document.createElement('input');
+// textbox.type = 'text';
+// document.getElementById('theForm').appendChild(textbox);
+// document.body.appendChild(textbox);
+
+  var timesCircleButton = document.createElement('i')
+  timesCircleButton.setAttribute('class', 'fa fa-times-circle fa-3x location-select-cross')
+  timesCircleButton.setAttribute('aria-hidden', 'true')
+  ff1.appendChild(timesCircleButton)
+  document.getElementsByClassName('slide-up-tab-content')[0].appendChild(ff1)
+
+  var checkCircleButton = document.createElement('i')
+  checkCircleButton.setAttribute('class', '  fa fa-check-circle fa-5x location-select-tick')
+  checkCircleButton.setAttribute('aria-hidden', 'true')
+  ff1.appendChild(checkCircleButton)
+  document.getElementsByClassName('slide-up-tab-content')[0].appendChild(ff1)
+
+  var newDiv = document.createElement('div')
+  newDiv.classList.add('slide-up-tab')
+  newDiv.classList.add('nugget-add-container')
+  // newDiv.classList.add('fa-check-circle')
+  // newDiv.classList.add('fa-times-circle')
+  // newDiv.className = 'slide-up-tab nugget-add-container fa fa-check-circle'
+  // console.log(newDiv)
+  newDiv.appendChild(ff1)
+  document.body.appendChild(newDiv)
+  // slide-up-tab-content
+})

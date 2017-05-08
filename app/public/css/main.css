@@ -68,8 +68,11 @@ html, body {
 */
 .slide-up-tab {
   position: absolute;
+  z-index: 100;
+  top: 10%;
+height: 85%;
 
-  width: 95%;
+  width: 90%;
   box-sizing: border-box;
 
   margin: 0em 2.5%;
@@ -81,6 +84,7 @@ html, body {
 
   font-family: 'Lato', sans-serif;
   background: rgba(255, 255, 255, 0.9);
+
 }
 
 .slide-up-tab-x-button {
@@ -122,6 +126,40 @@ html, body {
 /*
 5) ADD-FORM
 */
+
+.location-select {
+    z-index: 1000;
+}
+
+.nugget-add-container {
+  z-index: 1000;
+  position: absolute;
+  left: 30%;
+  background: rgba(231, 255, 230, 0.85);
+  width: 410px;
+  padding: 0px 10px;
+  height: 88%;
+  margin: 0px 10px;
+  border-top: 8px solid teal;
+  border-radius: 10px;
+  transition: all 0.4s ease;
+  overflow: scroll;
+}
+
+.nugget-add-container.visible {
+  top: 12%;
+}
+
+.nugget-add-container.not-visible {
+  top: 100%;
+}
+
+.nugget-add-container .fa-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
 
 /*
 6) LOCATION-SELECT
