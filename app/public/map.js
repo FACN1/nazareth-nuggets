@@ -97,4 +97,48 @@ var nazarethNuggets = (function () { // eslint-disable-line
   centerButton.addEventListener('click', function (e) {
     mymap.locate({setView: true})
   })
+
+  // Amazon S3
+  document.querySelector('.class-unknown').onchange = function () {
+    const files = document.querySelector('.class-unknown').files
+    const file = files[0]
+    if (file === null) {
+      console.log('No file selected')
+    }
+    getSignedRequest(file)
+  }
+
+  function getSignedRequest (file) {
+    const xhr = new XMLHttpRequest()
+    xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`)
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          const response = JSON.parse(xhr.responseText)
+          console.log(response.signedRequest)
+          uploadFile(file, response.signedRequest, response.url)
+        } else {
+          console.log('Could not get signed URL.')
+        }
+      }
+    }
+    xhr.send()
+  }
+
+  function uploadFile (file, signedRequest, url) {
+    console.log('im in uploadFile')
+    const xhr = new XMLHttpRequest()
+    xhr.open('PUT', signedRequest)
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          // adds the url to a hidden input in the form to send it to the server
+          document.querySelector('.hidden-class-inform').value = url
+        } else {
+          console.log('Could not upload file.')
+        }
+      }
+    }
+    xhr.send(file)
+  }
 })()
