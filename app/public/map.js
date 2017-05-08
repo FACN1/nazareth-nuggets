@@ -98,10 +98,10 @@ var nazarethNuggets = (function () { // eslint-disable-line
     mymap.locate({setView: true})
   })
 
-  var locationSelector = document.querySelector('.location-select-display')
+  var locationSelectDisplay = document.querySelector('.location-select-display')
   var addNuggetButton = document.querySelector('.add-nugget-button')
   addNuggetButton.addEventListener('click', function (e) {
-    locationSelector.classList.toggle('visible')
+    locationSelectDisplay.classList.toggle('visible')
   })
 
   var infoTabCrossButton = document.querySelector('.slide-up-tab-x-button')
