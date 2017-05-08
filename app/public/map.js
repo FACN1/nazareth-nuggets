@@ -2,6 +2,12 @@
 
 var nazarethNuggets = (function () { // eslint-disable-line
 
+  // bounds for leaflet in format: [south-west, north-east]
+  var nazarethBounds = [
+    [32.683154, 35.278158],
+    [32.723174, 35.341721]
+  ]
+
   function requestNuggets (method, url, callback) {
     var xhr = new XMLHttpRequest()
     xhr.onreadystatechange = function () {
@@ -17,37 +23,55 @@ var nazarethNuggets = (function () { // eslint-disable-line
     xhr.send()
   }
 
-  var icons = {
+  var bigIconsMap = {
     food: L.icon({
       iconUrl: './assets/food.png',
       iconSize: [24, 24]
     }),
     nature: L.icon({
-      iconUrl: './assets/leaf.png',
+      iconUrl: './assets/nature.png',
+      iconSize: [24, 24]
+    }),
+    exclamation: L.icon({
+      iconUrl: './assets/exclamation.png',
       iconSize: [24, 24]
     })
   }
 
-  function addIconsToMap (nuggets) {
-  // nuggets is an array of objects which holds the data from the db
-    nuggets.forEach(function (nugget) {
-      // for each nugget we want to make a marker and put it on the map
+  var smallIconsMap = {
+    food: L.icon({
+      iconUrl: './assets/food-small.png',
+      iconSize: [8, 8]
+    }),
+    nature: L.icon({
+      iconUrl: './assets/nature-small.png',
+      iconSize: [8, 8]
+    }),
+    exclamation: L.icon({
+      iconUrl: './assets/exclamation-small.png',
+      iconSize: [8, 8]
+    })
+  }
 
-      L.marker([nugget.lat, nugget.long], {
+  function createIconsLayer (nuggets, iconsMap) {
+  // nuggets is an array of objects which holds the data from the db
+    var icons = nuggets.map(function (nugget) {
+      // for each nugget we want to make a marker and put it on the map
+      return L.marker([nugget.lat, nugget.long], {
         id: nugget.id,
         category: nugget.category,
         title: nugget.title,
         description: nugget.description,
         img_url: nugget.img_url,
         author: nugget.author,
-        icon: icons[nugget.category]
+        icon: iconsMap[nugget.category]
       })
       .on('click', function (e) {
         // to be implemented
         console.log(e.target.options)
       })
-      .addTo(mymap)
     })
+    return L.layerGroup(icons)
   }
 
   var mymap = L.map('map', {
@@ -55,11 +79,7 @@ var nazarethNuggets = (function () { // eslint-disable-line
     zoomControl: false,
     attributionControl: false,
     zoom: 15,
-    maxBounds: [
-      // bounds for nazareth
-      [32.683154, 35.278158],
-      [32.723174, 35.341721]
-    ],
+    maxBounds: nazarethBounds,
     minZoom: 13
   })
 
@@ -69,7 +89,7 @@ var nazarethNuggets = (function () { // eslint-disable-line
     accessToken: 'pk.eyJ1Ijoia2FyeXVtIiwiYSI6ImNqMjAzNGU4ZjAxa3EycW4xazFxcHZ6a2QifQ.m_dNO1l1sMkM7r4d5nlRRQ'
   }).addTo(mymap)
 
-  // mymap.locate({setView: true})
+  mymap.locate({setView: true})
 
   function onLocationFound (e) {
     var radius = e.accuracy / 2
@@ -79,19 +99,34 @@ var nazarethNuggets = (function () { // eslint-disable-line
 
   mymap.on('locationfound', onLocationFound)
 
-  var nuggets = [
-    {id: 1, lat: 32.691, long: 35.309, category: 'food'},
-    {id: 2, lat: 32.690, long: 35.300, category: 'nature'}
-  ]
+  var nuggets
+  // these variables are undefined until the db results come back
+  var smallIconsLayer
+  var bigIconsLayer
 
   requestNuggets('GET', '/all-nuggets', function (err, res) {
     if (err) {
+      // need to improve this
       return err
     }
-    console.log(res)
+    smallIconsLayer = createIconsLayer(nuggets, smallIconsMap)
+    smallIconsLayer.addTo(mymap)
+    bigIconsLayer = createIconsLayer(nuggets, bigIconsMap)
   })
 
-  addIconsToMap(nuggets)
+  var displayCorrectIcons = function (e) {
+    // small icons if zoomed less than level 15, big icons otherwise
+    if (mymap.getZoom() < 15) {
+      smallIconsLayer.addTo(mymap)
+      bigIconsLayer.removeFrom(mymap)
+    } else {
+      smallIconsLayer.removeFrom(mymap)
+      bigIconsLayer.addTo(mymap)
+    }
+  }
+
+  // on zoomend is good but not perfect, because can zoom multiple levels before this function will re-run
+  mymap.on('zoomend', displayCorrectIcons)
 
   var centerButton = document.querySelector('.center-button')
   centerButton.addEventListener('click', function (e) {
