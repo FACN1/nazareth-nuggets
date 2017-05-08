@@ -154,6 +154,7 @@ html, body {
 }
 
 .location-select-tick {
+  pointer-events: initial;
   position: absolute;
   left: 50%;
   top: 75%;
@@ -163,6 +164,7 @@ html, body {
 }
 
 .location-select-cross {
+  pointer-events: initial;
   position: absolute;
   left: 50%;
   top: 90%;
