@@ -8,21 +8,6 @@ var nazarethNuggets = (function () { // eslint-disable-line
     [32.723174, 35.341721]
   ]
 
-  function generateMockNuggets (quantity, categories, bounds) {
-    var nuggets = []
-    var latBounds = [bounds[0][0], bounds[1][0]]
-    var lngBounds = [bounds[0][1], bounds[1][1]]
-    for (var i = 0; i < quantity; i++) {
-      nuggets.push({
-        id: i,
-        category: categories[Math.floor(Math.random() * categories.length)],
-        lat: latBounds[0] + (Math.random() * (latBounds[1] - latBounds[0])),
-        long: lngBounds[0] + (Math.random() * (lngBounds[1] - lngBounds[0]))
-      })
-    }
-    return nuggets
-  }
-
   function requestNuggets (method, url, callback) {
     var xhr = new XMLHttpRequest()
     xhr.onreadystatechange = function () {
@@ -114,17 +99,19 @@ var nazarethNuggets = (function () { // eslint-disable-line
 
   mymap.on('locationfound', onLocationFound)
 
-  var nuggets = generateMockNuggets(
-    50,
-    ['food', 'nature', 'exclamation'],
-    nazarethBounds
-  )
+  var nuggets
+  // these variables are undefined until the db results come back
+  var smallIconsLayer
+  var bigIconsLayer
 
   requestNuggets('GET', '/all-nuggets', function (err, res) {
     if (err) {
+      // need to improve this
       return err
     }
-    console.log(res)
+    smallIconsLayer = createIconsLayer(nuggets, smallIconsMap)
+    smallIconsLayer.addTo(mymap)
+    bigIconsLayer = createIconsLayer(nuggets, bigIconsMap)
   })
 
   var displayCorrectIcons = function (e) {
@@ -140,10 +127,6 @@ var nazarethNuggets = (function () { // eslint-disable-line
 
   // on zoomend is good but not perfect, because can zoom multiple levels before this function will re-run
   mymap.on('zoomend', displayCorrectIcons)
-
-  var smallIconsLayer = createIconsLayer(nuggets, smallIconsMap)
-  var bigIconsLayer = createIconsLayer(nuggets, bigIconsMap)
-  smallIconsLayer.addTo(mymap)
 
   var centerButton = document.querySelector('.center-button')
   centerButton.addEventListener('click', function (e) {

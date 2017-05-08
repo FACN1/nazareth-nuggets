@@ -1,4 +1,4 @@
-function generateMockNuggets (quantity, categories, bounds) {
+function generateMockNuggets (quantity, categories, bounds) { // eslint-disable-line
   // produces an array of random mock nugget objects
   var nuggets = []
   var latBounds = [bounds[0][0], bounds[1][0]]
