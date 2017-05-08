@@ -104,8 +104,6 @@ var nazarethNuggets = (function () { // eslint-disable-line
     locationSelector.classList.toggle('visible')
   })
 
-  // tic and cross goes here mario
-
   var infoTabCrossButton = document.querySelector('.slide-up-tab-x-button')
   var nuggetInfoTab = document.querySelector('.nugget-info-tab')
   infoTabCrossButton.addEventListener('click', function (e) {
