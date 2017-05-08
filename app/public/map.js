@@ -172,8 +172,31 @@ var nazarethNuggets = (function () { // eslint-disable-line
   // on zoomend is good but not perfect, because can zoom multiple levels before this function will re-run
   mymap.on('zoomend', displayCorrectIcons)
 
+  var locationSelectDisplay = document.querySelector('.location-select-display')
   var centerButton = document.querySelector('.center-button')
   centerButton.addEventListener('click', function (e) {
     mymap.locate({setView: true})
+  })
+
+  var locationSelectTick = document.querySelector('.location-select-tick')
+  locationSelectTick.addEventListener('click', function (e) {
+    locationSelectDisplay.classList.toggle('visible')
+    // toggle form tab not visible -- future goooal
+  })
+
+  var locationSelectCross = document.querySelector('.location-select-cross')
+  locationSelectCross.addEventListener('click', function (e) {
+    locationSelectDisplay.classList.toggle('visible')
+  })
+
+  var addNuggetButton = document.querySelector('.add-nugget-button')
+  addNuggetButton.addEventListener('click', function (e) {
+    locationSelectDisplay.classList.toggle('visible')
+  })
+
+  var infoTabCrossButton = document.querySelector('.slide-up-tab-x-button')
+  var nuggetInfoTab = document.querySelector('.nugget-info-tab')
+  infoTabCrossButton.addEventListener('click', function (e) {
+    nuggetInfoTab.classList.toggle('visible')
   })
 })()

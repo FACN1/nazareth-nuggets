@@ -63,6 +63,7 @@ html, body {
   top: 50%;
   transform: translateY(-30%);
 }
+
 /*
 3) SLIDE-UP-TAB
 */
@@ -98,6 +99,9 @@ html, body {
 */
 .nugget-info-tab.visible {
   top: 20%;
+  left: 0%;
+  z-index: 10;
+
   height: 80%;
 
   border-top: 0.4em solid rgb(255, 178, 53);
@@ -144,6 +148,10 @@ html, body {
     );
 }
 
+.location-select-display.visible {
+  display: block;
+}
+
 .location-select-pin {
   position: absolute;
   /*height: 4em;
@@ -155,6 +163,7 @@ html, body {
 }
 
 .location-select-tick {
+  pointer-events: initial;
   position: absolute;
   left: 50%;
   top: 75%;
@@ -164,6 +173,7 @@ html, body {
 }
 
 .location-select-cross {
+  pointer-events: initial;
   position: absolute;
   left: 50%;
   top: 90%;
