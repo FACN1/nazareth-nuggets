@@ -105,94 +105,78 @@ addNuggetButton.addEventListener('click', function (e) {
 
   var ff1 = document.createElement('form')
 
-  var para1 = document.createElement('P')
-  var paraPr1 = document.createTextNode('Title: ')
-  para1.appendChild(paraPr1)
+  var paraTitle1 = document.createElement('P')
+  var paraTitle1Attr = document.createTextNode('Title: ')
+  paraTitle1.appendChild(paraTitle1Attr)
 
-  var txtbox1 = document.createElement('input')
-  txtbox1.setAttribute('type', 'text')
+  var txtBoxTitle1 = document.createElement('input')
+  txtBoxTitle1.setAttribute('type', 'text')
 
-  ff1.appendChild(para1)
-  ff1.appendChild(txtbox1)
+  ff1.appendChild(paraTitle1)
+  ff1.appendChild(txtBoxTitle1)
   document.getElementsByClassName('slide-up-tab-content')[0].appendChild(ff1)
 
-  var para2 = document.createElement('P')
-  var paraPr2 = document.createTextNode('Category: ')
-  para2.appendChild(paraPr2)
+  var paraCategory2 = document.createElement('P')
+  var paraCategory2Attr = document.createTextNode('Category: ')
+  paraCategory2.appendChild(paraCategory2Attr)
 
-  var DropDown = document.createElement('select') // input element, text
-  DropDown.setAttribute('name', 'dropp') // maybe change?
-  DropDown.setAttribute('value', 'Food') // maybe change?
+  var DropDownCategory = document.createElement('select') // input element, text
+  DropDownCategory.setAttribute('name', 'DropDownCategoryName')
 
   var option1 = document.createElement('option') // input element, text
   option1.textContent = 'Food'
-  DropDown.appendChild(option1)
+  DropDownCategory.appendChild(option1)
   var option2 = document.createElement('option') // input element, text
   option2.textContent = 'Info'
-  DropDown.appendChild(option2)
+  DropDownCategory.appendChild(option2)
   var option3 = document.createElement('option') // input element, text
   option3.textContent = 'Fun Fact!'
-  DropDown.appendChild(option3)
+  DropDownCategory.appendChild(option3)
   var option4 = document.createElement('option') // input element, text
   option4.textContent = 'View'
-  DropDown.appendChild(option4)
+  DropDownCategory.appendChild(option4)
 
-  ff1.appendChild(para2)
-  ff1.appendChild(DropDown)
+  ff1.appendChild(paraCategory2)
+  ff1.appendChild(DropDownCategory)
   document.getElementsByClassName('slide-up-tab-content')[0].appendChild(ff1)
 
-  var para3 = document.createElement('P')
-  var paraPr3 = document.createTextNode('Upload Image: ')
-  para3.appendChild(paraPr3)
+  var paraUpload3 = document.createElement('P')
+  var paraUpload3Attr = document.createTextNode('Upload Image: ')
+  paraUpload3.appendChild(paraUpload3Attr)
 
-  var inputBtn1 = document.createElement('input')  // input element, text
-  inputBtn1.setAttribute('type', 'file')
-  inputBtn1.setAttribute('name', 'inputBtn01')
+  var uploadBtn1 = document.createElement('input')  // input element, text
+  uploadBtn1.setAttribute('type', 'file')
+  uploadBtn1.setAttribute('name', 'UploadBtnName')
 
-  ff1.appendChild(para3)
-  ff1.appendChild(inputBtn1)
+  ff1.appendChild(paraUpload3)
+  ff1.appendChild(uploadBtn1)
 
   document.getElementsByClassName('slide-up-tab-content')[0].appendChild(ff1)
 
-  var para5 = document.createElement('P')
-  var paraPr5 = document.createTextNode('Description: ')
-  para5.appendChild(paraPr5)
+  var paraDescription4 = document.createElement('P')
+  var paraDescription4Attr = document.createTextNode('Description: ')
+  paraDescription4.appendChild(paraDescription4Attr)
 
-  var txtbox2 = document.createElement('textarea')
+  var txtBoxDescription1 = document.createElement('textarea')
   var t = document.createTextNode('')
-  txtbox2.appendChild(t)
+  txtBoxDescription1.appendChild(t)
 
-  ff1.appendChild(para5)
-  ff1.appendChild(txtbox2)
-
-  document.getElementsByClassName('slide-up-tab-content')[0].appendChild(ff1)
-
-  var para6 = document.createElement('P')
-  var paraPr6 = document.createTextNode('Your name: ')
-  para6.appendChild(paraPr6)
-
-  var txtbox3 = document.createElement('input')
-  txtbox3.setAttribute('type', 'text')
-
-  ff1.appendChild(para6)
-  ff1.appendChild(txtbox3)
+  ff1.appendChild(paraDescription4)
+  ff1.appendChild(txtBoxDescription1)
 
   document.getElementsByClassName('slide-up-tab-content')[0].appendChild(ff1)
-  // document.myFunction.onload = addElement
-  // document.body.appendChild(addNuggetButton)
 
-  //  var ff3 = document.createElement("form");
-  // f.setAttribute('method',"post");
-  // f.setAttribute('action',"submit.php");
-  //  document.body.appendChild(ff3);
- /// ///var i = document.createElement("input"); //input element, text
- // i.setAttribute('type',"text");
- // i.setAttribute('name',"username");
- /// ///    ff3.appendChild(i);
-// var textbox = document.createElement('input');
-// textbox.type = 'text';
-// document.getElementById('theForm').appendChild(textbox);
-// document.body.appendChild(textbox);
+  var paraName = document.createElement('P')
+  var paraNameAttr = document.createTextNode('Your name: ')
+  paraName.appendChild(paraNameAttr)
+
+  var txtboxName = document.createElement('input')
+  txtboxName.setAttribute('type', 'text')
+
+  ff1.appendChild(paraName)
+  ff1.appendChild(txtboxName)
+
+  document.getElementsByClassName('slide-up-tab-content')[0].appendChild(ff1)
 
   var timesCircleButton = document.createElement('i')
   timesCircleButton.setAttribute('class', 'fa fa-times-circle fa-3x location-select-cross')
