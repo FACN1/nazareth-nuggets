@@ -11,10 +11,10 @@ CREATE TABLE nuggets(
   description TEXT,
   img_url VARCHAR(100),
   author VARCHAR(30) NOT NULL,
-  infoDateTime TIMESTAMP
+  timestamp timestamp default current_timestamp
 );
 
 INSERT INTO nuggets (lat, long, category, title, description, img_url, author)
-VALUES (12.3452, -43.314134, 'food', 'Al Waked', 'A great shwarma place and a great cheeky shwarma', null, 'Elias');
+VALUES (32.699, 35.303, 'food', 'Al Waked', 'A great shwarma place and a great cheeky shwarma', null, 'Elias');
 
 COMMIT;

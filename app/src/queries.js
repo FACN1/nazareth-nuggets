@@ -10,7 +10,7 @@ const getAll = (cb) => {
 }
 
 const addNugget = (data, cb) => {
-  dbConnection.query('INSERT INTO nuggets (lat, long, category, title, description, img_url, author) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)', [data.lat, data.long, data.category, data.title, data.description, data.img_url, data.author], cb)
+  dbConnection.query('INSERT INTO nuggets (lat, long, category, title, description, img_url, author) VALUES ($1, $2, $3, $4, $5, $6, $7)', [data.lat, data.long, data.category, data.title, data.description, data.img_url, data.author], cb)
 }
 module.exports = {
   getAll,
