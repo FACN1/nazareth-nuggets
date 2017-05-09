@@ -2,6 +2,8 @@
 
 var nazarethNuggets = (function () { // eslint-disable-line
 
+  var TAB_ANIMATION_DURATION = 300
+
   // bounds for leaflet in format: [south-west, north-east]
   var nazarethBounds = [
     [32.683154, 35.278158],
@@ -38,7 +40,7 @@ var nazarethNuggets = (function () { // eslint-disable-line
     })
   }
 
-  function requestNuggets (method, url, callback) {
+  function makeRequest (method, url, data, callback) {
     var xhr = new XMLHttpRequest()
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4 && xhr.status === 200) {
@@ -50,6 +52,9 @@ var nazarethNuggets = (function () { // eslint-disable-line
       }
     }
     xhr.open(method, url)
+    if (data) {
+      return (xhr.send(JSON.stringify(data)))
+    }
     xhr.send()
   }
 
@@ -60,7 +65,7 @@ var nazarethNuggets = (function () { // eslint-disable-line
     // timeout to allow animation to happen...
     setTimeout(function () {
       document.body.removeChild(e.target.parentNode)
-    }, 300)
+    }, TAB_ANIMATION_DURATION)
   }
 
   function createNuggetInfoTab (info) {
@@ -159,7 +164,7 @@ var nazarethNuggets = (function () { // eslint-disable-line
   var smallIconsLayer
   var bigIconsLayer
 
-  requestNuggets('GET', '/all-nuggets', function (err, nuggets) {
+  makeRequest('GET', '/all-nuggets', null, function (err, nuggets) {
     if (err) {
       // need to improve this
       return err
@@ -192,6 +197,31 @@ var nazarethNuggets = (function () { // eslint-disable-line
       return
     }
     getSignedRequest(file)
+  }
+
+  function submitForm (e) { // eslint-disable-line
+    // get data from form fields
+    var form = e.target.parentNode.parentNode
+    var inputs = form.querySelectorAll('.add-form-input')
+    var formData = {}
+    inputs.forEach(function (input) {
+      formData[input.name] = input.value
+    })
+    // validate data ?
+    // send data to server
+    makeRequest('POST', '/add-nugget', formData, function (err) {
+      if (err) {
+        // pop up error message suggesting try to submit the orm again
+        return
+      }
+      // put pin on map (currently commented out awaiting implementation)
+      // addNuggetToMap(formData)
+      // remove form from page
+      form.classList.remove('visible')
+      setTimeout(function () {
+        document.body.removeChild(form)
+      }, TAB_ANIMATION_DURATION)
+    })
   }
 
   function getSignedRequest (file) {
