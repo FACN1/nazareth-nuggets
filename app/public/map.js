@@ -109,6 +109,17 @@ var nazarethNuggets = (function () { // eslint-disable-line
     }, 50)
   }
 
+  function displayForm (e) {
+    // waiting for createForm function !!!!!!
+    // locationSelectDisplay.classList.remove('visible')
+    // var clickedLocation = mymap.getCenter()
+    // var addNuggetFormTab = createForm(clickedLocation.lat, clickedLocation.lng)
+    // document.body.appendChild(addNuggetFormTab)
+    // setTimeout(function () {
+    //   addNuggetFormTab.classList.add('visible')
+    // }, 50)
+  }
+
   function createMarker (nugget, iconsMap) {
     return L.marker([nugget.lat, nugget.long], {
       id: nugget.id,
@@ -233,10 +244,7 @@ var nazarethNuggets = (function () { // eslint-disable-line
   })
 
   var locationSelectTick = document.querySelector('.location-select-tick')
-  locationSelectTick.addEventListener('click', function (e) {
-    locationSelectDisplay.classList.toggle('visible')
-    // toggle form tab not visible -- future goooal
-  })
+  locationSelectTick.addEventListener('click', displayForm)
 
   var locationSelectCross = document.querySelector('.location-select-cross')
   locationSelectCross.addEventListener('click', function (e) {
