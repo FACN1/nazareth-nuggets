@@ -10,7 +10,8 @@ CREATE TABLE nuggets(
   title VARCHAR(50) NOT NULL,
   description TEXT,
   img_url VARCHAR(100),
-  author VARCHAR(30) NOT NULL
+  author VARCHAR(30) NOT NULL,
+  infoDateTime TIMESTAMP
 );
 
 INSERT INTO nuggets (lat, long, category, title, description, img_url, author)
