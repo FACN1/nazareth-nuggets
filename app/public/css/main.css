@@ -96,10 +96,10 @@ height: 85%;
 /*
 4) NUGGET-INFO
 */
-.nugget-info-tab {
-  display: none;
+.nugget-info-tab.visible {
   top: 20%;
   left: 0%;
+  z-index: 10;
 
   height: 80%;
 
@@ -164,8 +164,7 @@ height: 85%;
 /*
 6) LOCATION-SELECT
 */
-.location-select-display {
-  display: none;
+.location-select-display.visible {
   z-index: 100;
   /* to allow map events to happen 'under' this screen */
   pointer-events: none;
@@ -181,6 +180,7 @@ height: 85%;
     );
 }
 
+
 .location-select-pin {
   position: absolute;
   /*height: 4em;
@@ -192,6 +192,7 @@ height: 85%;
 }
 
 .location-select-tick {
+  pointer-events: initial;
   position: absolute;
   left: 10%;
   top: 75%;
@@ -201,6 +202,7 @@ height: 85%;
 }
 
 .location-select-cross {
+  pointer-events: initial;
   position: absolute;
   left: 50%;
   top: 75%;
