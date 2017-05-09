@@ -249,7 +249,7 @@
     locationSelectDisplay.classList.toggle('visible')
   })
 
-  function createForm () { // eslint-disable-line
+  function createForm (lat, lng) { // eslint-disable-line
     // if (e.defaultPrevented) return
 
     var addNuggetForm = document.createElement('form')
@@ -300,6 +300,7 @@
     var uploadBtn1 = document.createElement('input')  // input element, text
     uploadBtn1.setAttribute('type', 'file')
     uploadBtn1.setAttribute('name', 'UploadBtnName')
+    uploadBtn1.setAttribute('class', 'image-input')
 
     addNuggetForm.appendChild(paraUpload3)
     addNuggetForm.appendChild(uploadBtn1)
@@ -345,6 +346,17 @@
     buttonsContainer.appendChild(checkCircleButton)
     buttonsContainer.appendChild(timesCircleButton)
     addNuggetForm.appendChild(buttonsContainer)
+
+    var latInput = document.createElement('input')
+    latInput.setAttribute('type', 'hidden')
+    latInput.setAttribute('value', lat)
+
+    var lngInput = document.createElement('input')
+    lngInput.setAttribute('type', 'hidden')
+    lngInput.setAttribute('value', lng)
+
+    addNuggetForm.appendChild(latInput)
+    addNuggetForm.appendChild(lngInput)
 
     var newDiv = document.createElement('div')
     newDiv.classList.add('slide-up-tab')
