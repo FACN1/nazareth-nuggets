@@ -138,19 +138,18 @@ html, body {
 }
 
 .add-nugget-tab {
+  top: 20%;
+  left: 0%;
   z-index: 1000;
   position: absolute;
-  left: 30%;
   background: rgba(231, 255, 230, 0.85);
-  width: 410px;
-  padding: 0px 10px;
-  height: 88%;
-  margin: 0px 10px;
+  width: 95%;
+  height: 80%;
   border-top: 8px solid teal;
-  border-radius: 10px;
   transition: all 0.4s ease;
   overflow: scroll;
 }
+
 
 .add-nugget-tab.visible {
   top: 12%;
@@ -160,12 +159,51 @@ html, body {
   top: 100%;
 }
 
-.add-nugget-tab .fa-close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+.add-form-input {
+  margin: auto;
+  display: block;
+  padding: 0.5rem;
+  border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 1em;
+  border: none;
 }
 
+.add-form-category-input {
+  height: 3em;
+}
+
+.description-text-area{
+  width: 100%;
+}
+
+.add-form-buttons {
+  margin: 1.5em;
+  height: 3em;
+}
+
+.add-form-check {
+  position: absolute;
+  color: green;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, white 55%, transparent 45%);
+  left: 42%;
+}
+
+.add-form-times {
+  position: absolute;
+  color: red;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, white 55%, transparent 45%);
+  left: 58%;
+}
+
+.formPara {
+  font-size: 1.2em;
+  font-weight:bold;
+  margin-bottom: 0.4em;
+}
 
 /*
 6) LOCATION-SELECT
@@ -220,11 +258,6 @@ html, body {
   color: var(--cross-button-colour);
   background: radial-gradient(circle, white 55%, transparent 45%);
 }
-
-.description-text-area{
-  height:10%;
-}
-
 
 @keyframes single-bounce {
   0%   { transform: translate(-50%, -100%) }

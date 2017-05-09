@@ -1,6 +1,6 @@
 /* global L XMLHttpRequest */
 
-var nazarethNuggets = (function () { // eslint-disable-line
+(function () { // eslint-disable-line
 
   // bounds for leaflet in format: [south-west, north-east]
   var nazarethBounds = [
@@ -184,17 +184,17 @@ var nazarethNuggets = (function () { // eslint-disable-line
   mymap.on('zoomend', displayCorrectIcons)
 
   // Amazon S3
-  document.querySelector('.image-input').onchange = function () {
-    var files = document.querySelector('.image-input').files
-    var file = files[0]
-    if (file === null) {
-      // should send the user that he didn't uplaod a file or it wasn't succeful
-      return
-    }
-    getSignedRequest(file)
-  }
+  // document.querySelector('.image-input').onchange = function () {
+  //   var files = document.querySelector('.image-input').files
+  //   var file = files[0]
+  //   if (file === null) {
+  //     // should send the user that he didn't uplaod a file or it wasn't succeful
+  //     return
+  //   }
+  //   getSignedRequest(file)
+  // }
 
-  function getSignedRequest (file) {
+  function getSignedRequest (file) { // eslint-disable-line
     var xhr = new XMLHttpRequest()
     xhr.open('GET', '/sign-s3?file-name=' + file.name + '&file-type=' + file.type)
     xhr.onreadystatechange = function () {
@@ -245,100 +245,118 @@ var nazarethNuggets = (function () { // eslint-disable-line
 
   var addNuggetButton = document.querySelector('.add-nugget-button')
   addNuggetButton.addEventListener('click', function (e) {
+    console.log('asdasd')
     locationSelectDisplay.classList.toggle('visible')
   })
+
+  function createForm () { // eslint-disable-line
+    // if (e.defaultPrevented) return
+
+    var addNuggetForm = document.createElement('form')
+
+    var paraTitle1 = document.createElement('P')
+    var paraTitle1Attr = document.createTextNode('Title: ')
+    paraTitle1.classList.add('formPara')
+    paraTitle1.appendChild(paraTitle1Attr)
+
+    var txtBoxTitle1 = document.createElement('input')
+    txtBoxTitle1.setAttribute('type', 'text')
+    txtBoxTitle1.classList.add('add-form-input')
+
+    addNuggetForm.appendChild(paraTitle1)
+    addNuggetForm.appendChild(txtBoxTitle1)
+
+    var paraCategory2 = document.createElement('P')
+    var paraCategory2Attr = document.createTextNode('Category: ')
+    paraCategory2.classList.add('formPara')
+    paraCategory2.appendChild(paraCategory2Attr)
+
+    var DropDownCategory = document.createElement('select') // input element, text
+    DropDownCategory.setAttribute('name', 'DropDownCategoryName')
+    DropDownCategory.classList.add('add-form-category-input')
+    DropDownCategory.classList.add('add-form-input')
+
+    var option1 = document.createElement('option') // input element, text
+    option1.textContent = 'Food'
+    DropDownCategory.appendChild(option1)
+    var option2 = document.createElement('option') // input element, text
+    option2.textContent = 'Info'
+    DropDownCategory.appendChild(option2)
+    var option3 = document.createElement('option') // input element, text
+    option3.textContent = 'Fun Fact!'
+    DropDownCategory.appendChild(option3)
+    var option4 = document.createElement('option') // input element, text
+    option4.textContent = 'View'
+    DropDownCategory.appendChild(option4)
+
+    addNuggetForm.appendChild(paraCategory2)
+    addNuggetForm.appendChild(DropDownCategory)
+
+    var paraUpload3 = document.createElement('P')
+    var paraUpload3Attr = document.createTextNode('Upload Image: ')
+    paraUpload3.classList.add('formPara')
+    paraUpload3.appendChild(paraUpload3Attr)
+
+    var uploadBtn1 = document.createElement('input')  // input element, text
+    uploadBtn1.setAttribute('type', 'file')
+    uploadBtn1.setAttribute('name', 'UploadBtnName')
+
+    addNuggetForm.appendChild(paraUpload3)
+    addNuggetForm.appendChild(uploadBtn1)
+
+    var paraDescription4 = document.createElement('P')
+    var paraDescription4Attr = document.createTextNode('Description: ')
+    paraDescription4.classList.add('formPara')
+    paraDescription4.appendChild(paraDescription4Attr)
+
+    var txtBoxDescription1 = document.createElement('textarea')
+    var t = document.createTextNode('')
+    txtBoxDescription1.setAttribute('class', 'description-text-area')
+    txtBoxDescription1.setAttribute('rows', 8)
+    txtBoxDescription1.setAttribute('cols', 80)
+    txtBoxDescription1.classList.add('add-form-input')
+    txtBoxDescription1.appendChild(t)
+
+    addNuggetForm.appendChild(paraDescription4)
+    addNuggetForm.appendChild(txtBoxDescription1)
+
+    var paraName = document.createElement('P')
+    var paraNameAttr = document.createTextNode('Your name: ')
+    paraName.classList.add('formPara')
+    paraName.appendChild(paraNameAttr)
+
+    var txtboxName = document.createElement('input')
+    txtboxName.setAttribute('type', 'text')
+    txtboxName.classList.add('add-form-input')
+
+    addNuggetForm.appendChild(paraName)
+    addNuggetForm.appendChild(txtboxName)
+
+    var buttonsContainer = document.createElement('div')
+    buttonsContainer.classList.add('add-form-buttons')
+    var timesCircleButton = document.createElement('i')
+    timesCircleButton.setAttribute('class', 'fa fa-times-circle fa-3x add-form-times')
+    timesCircleButton.setAttribute('aria-hidden', 'true')
+
+    var checkCircleButton = document.createElement('i')
+    checkCircleButton.setAttribute('class', 'fa fa-check-circle fa-3x add-form-check')
+    checkCircleButton.setAttribute('aria-hidden', 'true')
+
+    buttonsContainer.appendChild(checkCircleButton)
+    buttonsContainer.appendChild(timesCircleButton)
+    addNuggetForm.appendChild(buttonsContainer)
+
+    var newDiv = document.createElement('div')
+    newDiv.classList.add('slide-up-tab')
+    newDiv.classList.add('add-nugget-tab')
+    // newDiv.classList.add('fa-check-circle')
+    // newDiv.classList.add('fa-times-circle')
+    // newDiv.className = 'slide-up-tab nugget-add-container fa fa-check-circle'
+    // console.log(newDiv)
+    newDiv.appendChild(addNuggetForm)
+    document.body.appendChild(newDiv)
+    // slide-up-tab-content
+  }
+
+  createForm()
 })()
-
-function createForm () { // eslint-disable-line
-  // if (e.defaultPrevented) return
-
-  var addNuggetForm = document.createElement('form')
-
-  var paraTitle1 = document.createElement('P')
-  var paraTitle1Attr = document.createTextNode('Title: ')
-  paraTitle1.appendChild(paraTitle1Attr)
-
-  var txtBoxTitle1 = document.createElement('input')
-  txtBoxTitle1.setAttribute('type', 'text')
-
-  addNuggetForm.appendChild(paraTitle1)
-  addNuggetForm.appendChild(txtBoxTitle1)
-
-  var paraCategory2 = document.createElement('P')
-  var paraCategory2Attr = document.createTextNode('Category: ')
-  paraCategory2.appendChild(paraCategory2Attr)
-
-  var DropDownCategory = document.createElement('select') // input element, text
-  DropDownCategory.setAttribute('name', 'DropDownCategoryName')
-
-  var option1 = document.createElement('option') // input element, text
-  option1.textContent = 'Food'
-  DropDownCategory.appendChild(option1)
-  var option2 = document.createElement('option') // input element, text
-  option2.textContent = 'Info'
-  DropDownCategory.appendChild(option2)
-  var option3 = document.createElement('option') // input element, text
-  option3.textContent = 'Fun Fact!'
-  DropDownCategory.appendChild(option3)
-  var option4 = document.createElement('option') // input element, text
-  option4.textContent = 'View'
-  DropDownCategory.appendChild(option4)
-
-  addNuggetForm.appendChild(paraCategory2)
-  addNuggetForm.appendChild(DropDownCategory)
-
-  var paraUpload3 = document.createElement('P')
-  var paraUpload3Attr = document.createTextNode('Upload Image: ')
-  paraUpload3.appendChild(paraUpload3Attr)
-
-  var uploadBtn1 = document.createElement('input')  // input element, text
-  uploadBtn1.setAttribute('type', 'file')
-  uploadBtn1.setAttribute('name', 'UploadBtnName')
-
-  addNuggetForm.appendChild(paraUpload3)
-  addNuggetForm.appendChild(uploadBtn1)
-
-  var paraDescription4 = document.createElement('P')
-  var paraDescription4Attr = document.createTextNode('Description: ')
-  paraDescription4.appendChild(paraDescription4Attr)
-
-  var txtBoxDescription1 = document.createElement('textarea')
-  var t = document.createTextNode('')
-  txtBoxDescription1.setAttribute('class', 'description-text-area')
-  txtBoxDescription1.appendChild(t)
-
-  addNuggetForm.appendChild(paraDescription4)
-  addNuggetForm.appendChild(txtBoxDescription1)
-
-  var paraName = document.createElement('P')
-  var paraNameAttr = document.createTextNode('Your name: ')
-  paraName.appendChild(paraNameAttr)
-
-  var txtboxName = document.createElement('input')
-  txtboxName.setAttribute('type', 'text')
-
-  addNuggetForm.appendChild(paraName)
-  addNuggetForm.appendChild(txtboxName)
-
-  var timesCircleButton = document.createElement('i')
-  timesCircleButton.setAttribute('class', 'fa fa-times-circle fa-3x location-select-cross')
-  timesCircleButton.setAttribute('aria-hidden', 'true')
-
-  var checkCircleButton = document.createElement('i')
-  checkCircleButton.setAttribute('class', '  fa fa-check-circle fa-5x location-select-tick')
-  checkCircleButton.setAttribute('aria-hidden', 'true')
-
-  addNuggetForm.appendChild(timesCircleButton)
-  addNuggetForm.appendChild(checkCircleButton)
-
-  var newDiv = document.createElement('div')
-  newDiv.classList.add('slide-up-tab')
-  newDiv.classList.add('add-nugget-tab')
-  // newDiv.classList.add('fa-check-circle')
-  // newDiv.classList.add('fa-times-circle')
-  // newDiv.className = 'slide-up-tab nugget-add-container fa fa-check-circle'
-  // console.log(newDiv)
-  newDiv.appendChild(addNuggetForm)
-  document.body.appendChild(newDiv)
-  // slide-up-tab-content
-}
