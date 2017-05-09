@@ -138,13 +138,13 @@ html, body {
 }
 
 .add-nugget-tab {
-  top: 20%;
+  top: 100%;
   left: 0%;
   z-index: 1000;
   position: absolute;
   background: rgba(231, 255, 230, 0.85);
   width: 95%;
-  height: 80%;
+  height: 88%;
   border-top: 8px solid teal;
   transition: all 0.4s ease;
   overflow: scroll;
@@ -152,7 +152,7 @@ html, body {
 
 
 .add-nugget-tab.visible {
-  top: 12%;
+  top: 10%;
 }
 
 .add-nugget-tab.not-visible {
