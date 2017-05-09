@@ -253,15 +253,15 @@
 
   var addNuggetButton = document.querySelector('.add-nugget-button')
   addNuggetButton.addEventListener('click', function (e) {
-    console.log('asdasd')
     locationSelectDisplay.classList.toggle('visible')
   })
 
   function createForm (lat, lng) { // eslint-disable-line
-    // if (e.defaultPrevented) return
 
+    // creates the form
     var addNuggetForm = document.createElement('form')
 
+    // create the nugget title and its input then renders it to the form
     var paraTitle1 = document.createElement('P')
     var paraTitle1Attr = document.createTextNode('Title: ')
     paraTitle1.classList.add('formPara')
@@ -274,6 +274,7 @@
     addNuggetForm.appendChild(paraTitle1)
     addNuggetForm.appendChild(txtBoxTitle1)
 
+    // create category and its select then renders it to the form
     var paraCategory2 = document.createElement('P')
     var paraCategory2Attr = document.createTextNode('Category: ')
     paraCategory2.classList.add('formPara')
@@ -300,6 +301,7 @@
     addNuggetForm.appendChild(paraCategory2)
     addNuggetForm.appendChild(DropDownCategory)
 
+    // creates image input element and renders it to the form
     var paraUpload3 = document.createElement('P')
     var paraUpload3Attr = document.createTextNode('Upload Image: ')
     paraUpload3.classList.add('formPara')
@@ -313,22 +315,22 @@
     addNuggetForm.appendChild(paraUpload3)
     addNuggetForm.appendChild(uploadBtn1)
 
+    // creates a text area for the description adn renders it to the form
     var paraDescription4 = document.createElement('P')
     var paraDescription4Attr = document.createTextNode('Description: ')
     paraDescription4.classList.add('formPara')
     paraDescription4.appendChild(paraDescription4Attr)
 
     var txtBoxDescription1 = document.createElement('textarea')
-    var t = document.createTextNode('')
     txtBoxDescription1.setAttribute('class', 'description-text-area')
     txtBoxDescription1.setAttribute('rows', 8)
     txtBoxDescription1.setAttribute('cols', 80)
     txtBoxDescription1.classList.add('add-form-input')
-    txtBoxDescription1.appendChild(t)
 
     addNuggetForm.appendChild(paraDescription4)
     addNuggetForm.appendChild(txtBoxDescription1)
 
+    // create the submitter input and renders it to the form
     var paraName = document.createElement('P')
     var paraNameAttr = document.createTextNode('Your name: ')
     paraName.classList.add('formPara')
@@ -341,24 +343,31 @@
     addNuggetForm.appendChild(paraName)
     addNuggetForm.appendChild(txtboxName)
 
+    // create a div to append buttons (check/cross) to it to have moe control over them on the form tab
     var buttonsContainer = document.createElement('div')
     buttonsContainer.classList.add('add-form-buttons')
+
+    // creates the cross button
     var timesCircleButton = document.createElement('i')
     timesCircleButton.setAttribute('class', 'fa fa-times-circle fa-3x add-form-times')
     timesCircleButton.setAttribute('aria-hidden', 'true')
 
+    // creates the check button
     var checkCircleButton = document.createElement('i')
     checkCircleButton.setAttribute('class', 'fa fa-check-circle fa-3x add-form-check')
     checkCircleButton.setAttribute('aria-hidden', 'true')
 
+    // appends the buttons to the div then append the div to the form
     buttonsContainer.appendChild(checkCircleButton)
     buttonsContainer.appendChild(timesCircleButton)
     addNuggetForm.appendChild(buttonsContainer)
 
+    // create a hidden input for the latitude
     var latInput = document.createElement('input')
     latInput.setAttribute('type', 'hidden')
     latInput.setAttribute('value', lat)
 
+    // create a hidden input for the longitude
     var lngInput = document.createElement('input')
     lngInput.setAttribute('type', 'hidden')
     lngInput.setAttribute('value', lng)
@@ -369,12 +378,8 @@
     var newDiv = document.createElement('div')
     newDiv.classList.add('slide-up-tab')
     newDiv.classList.add('add-nugget-tab')
-    // newDiv.classList.add('fa-check-circle')
-    // newDiv.classList.add('fa-times-circle')
-    // newDiv.className = 'slide-up-tab nugget-add-container fa fa-check-circle'
-    // console.log(newDiv)
+
     newDiv.appendChild(addNuggetForm)
-    document.body.appendChild(newDiv)
-    // slide-up-tab-content
+    return newDiv
   }
 })()
