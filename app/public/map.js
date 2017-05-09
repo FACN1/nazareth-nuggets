@@ -109,6 +109,16 @@
     }, 50)
   }
 
+  function displayForm (e) {
+    locationSelectDisplay.classList.remove('visible')
+    var clickedLocation = mymap.getCenter()
+    var addNuggetFormTab = createForm(clickedLocation.lat, clickedLocation.lng)
+    document.body.appendChild(addNuggetFormTab)
+    setTimeout(function () {
+      addNuggetFormTab.classList.add('visible')
+    }, 50)
+  }
+
   function createMarker (nugget, iconsMap) {
     return L.marker([nugget.lat, nugget.long], {
       id: nugget.id,
@@ -183,6 +193,7 @@
   // on zoomend is good but not perfect, because can zoom multiple levels before this function will re-run
   mymap.on('zoomend', displayCorrectIcons)
 
+  // commented out temporarily to prevent script error
   // Amazon S3
   // document.querySelector('.image-input').onchange = function () {
   //   var files = document.querySelector('.image-input').files
@@ -193,38 +204,38 @@
   //   }
   //   getSignedRequest(file)
   // }
-
-  function getSignedRequest (file) { // eslint-disable-line
-    var xhr = new XMLHttpRequest()
-    xhr.open('GET', '/sign-s3?file-name=' + file.name + '&file-type=' + file.type)
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === 4) {
-        if (xhr.status === 200) {
-          var response = JSON.parse(xhr.responseText)
-          uploadFile(file, response.signedRequest, response.url)
-        } else {
-          // should send the user a message saying that uplading the image wasn't succeful and try again
-        }
-      }
-    }
-    xhr.send()
-  }
-
-  function uploadFile (file, signedRequest, url) {
-    var xhr = new XMLHttpRequest()
-    xhr.open('PUT', signedRequest)
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === 4) {
-        if (xhr.status === 200) {
-          // adds the url to a hidden input in the form to send it to the server
-          document.querySelector('.hidden-input-in-form').value = url
-        } else {
-          // should send the user a message saying that uplading the image wasn't succeful and try again
-        }
-      }
-    }
-    xhr.send(file)
-  }
+  //
+  // function getSignedRequest (file) {
+  //   var xhr = new XMLHttpRequest()
+  //   xhr.open('GET', '/sign-s3?file-name=' + file.name + '&file-type=' + file.type)
+  //   xhr.onreadystatechange = function () {
+  //     if (xhr.readyState === 4) {
+  //       if (xhr.status === 200) {
+  //         var response = JSON.parse(xhr.responseText)
+  //         uploadFile(file, response.signedRequest, response.url)
+  //       } else {
+  //         // should send the user a message saying that uplading the image wasn't succeful and try again
+  //       }
+  //     }
+  //   }
+  //   xhr.send()
+  // }
+  //
+  // function uploadFile (file, signedRequest, url) {
+  //   var xhr = new XMLHttpRequest()
+  //   xhr.open('PUT', signedRequest)
+  //   xhr.onreadystatechange = function () {
+  //     if (xhr.readyState === 4) {
+  //       if (xhr.status === 200) {
+  //         // adds the url to a hidden input in the form to send it to the server
+  //         document.querySelector('.hidden-input-in-form').value = url
+  //       } else {
+  //         // should send the user a message saying that uplading the image wasn't succeful and try again
+  //       }
+  //     }
+  //   }
+  //   xhr.send(file)
+  // }
 
   var locationSelectDisplay = document.querySelector('.location-select-display')
   var centerButton = document.querySelector('.center-button')
@@ -233,10 +244,7 @@
   })
 
   var locationSelectTick = document.querySelector('.location-select-tick')
-  locationSelectTick.addEventListener('click', function (e) {
-    locationSelectDisplay.classList.toggle('visible')
-    // toggle form tab not visible -- future goooal
-  })
+  locationSelectTick.addEventListener('click', displayForm)
 
   var locationSelectCross = document.querySelector('.location-select-cross')
   locationSelectCross.addEventListener('click', function (e) {
@@ -369,6 +377,4 @@
     document.body.appendChild(newDiv)
     // slide-up-tab-content
   }
-
-  createForm()
 })()
