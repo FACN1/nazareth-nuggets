@@ -99,11 +99,10 @@ var nazarethNuggets = (function () { // eslint-disable-line
   })
 })()
 
-var addNuggetButton = document.querySelector('.add-nugget-button')
-addNuggetButton.addEventListener('click', function (e) {
+function createForm () { // eslint-disable-line
   // if (e.defaultPrevented) return
 
-  var ff1 = document.createElement('form')
+  var addNuggetForm = document.createElement('form')
 
   var paraTitle1 = document.createElement('P')
   var paraTitle1Attr = document.createTextNode('Title: ')
@@ -112,9 +111,8 @@ addNuggetButton.addEventListener('click', function (e) {
   var txtBoxTitle1 = document.createElement('input')
   txtBoxTitle1.setAttribute('type', 'text')
 
-  ff1.appendChild(paraTitle1)
-  ff1.appendChild(txtBoxTitle1)
-  document.getElementsByClassName('slide-up-tab-content')[0].appendChild(ff1)
+  addNuggetForm.appendChild(paraTitle1)
+  addNuggetForm.appendChild(txtBoxTitle1)
 
   var paraCategory2 = document.createElement('P')
   var paraCategory2Attr = document.createTextNode('Category: ')
@@ -136,9 +134,8 @@ addNuggetButton.addEventListener('click', function (e) {
   option4.textContent = 'View'
   DropDownCategory.appendChild(option4)
 
-  ff1.appendChild(paraCategory2)
-  ff1.appendChild(DropDownCategory)
-  document.getElementsByClassName('slide-up-tab-content')[0].appendChild(ff1)
+  addNuggetForm.appendChild(paraCategory2)
+  addNuggetForm.appendChild(DropDownCategory)
 
   var paraUpload3 = document.createElement('P')
   var paraUpload3Attr = document.createTextNode('Upload Image: ')
@@ -148,10 +145,8 @@ addNuggetButton.addEventListener('click', function (e) {
   uploadBtn1.setAttribute('type', 'file')
   uploadBtn1.setAttribute('name', 'UploadBtnName')
 
-  ff1.appendChild(paraUpload3)
-  ff1.appendChild(uploadBtn1)
-
-  document.getElementsByClassName('slide-up-tab-content')[0].appendChild(ff1)
+  addNuggetForm.appendChild(paraUpload3)
+  addNuggetForm.appendChild(uploadBtn1)
 
   var paraDescription4 = document.createElement('P')
   var paraDescription4Attr = document.createTextNode('Description: ')
@@ -159,12 +154,11 @@ addNuggetButton.addEventListener('click', function (e) {
 
   var txtBoxDescription1 = document.createElement('textarea')
   var t = document.createTextNode('')
+  txtBoxDescription1.setAttribute('class', 'description-text-area')
   txtBoxDescription1.appendChild(t)
 
-  ff1.appendChild(paraDescription4)
-  ff1.appendChild(txtBoxDescription1)
-
-  document.getElementsByClassName('slide-up-tab-content')[0].appendChild(ff1)
+  addNuggetForm.appendChild(paraDescription4)
+  addNuggetForm.appendChild(txtBoxDescription1)
 
   var paraName = document.createElement('P')
   var paraNameAttr = document.createTextNode('Your name: ')
@@ -173,31 +167,28 @@ addNuggetButton.addEventListener('click', function (e) {
   var txtboxName = document.createElement('input')
   txtboxName.setAttribute('type', 'text')
 
-  ff1.appendChild(paraName)
-  ff1.appendChild(txtboxName)
-
-  document.getElementsByClassName('slide-up-tab-content')[0].appendChild(ff1)
+  addNuggetForm.appendChild(paraName)
+  addNuggetForm.appendChild(txtboxName)
 
   var timesCircleButton = document.createElement('i')
   timesCircleButton.setAttribute('class', 'fa fa-times-circle fa-3x location-select-cross')
   timesCircleButton.setAttribute('aria-hidden', 'true')
-  ff1.appendChild(timesCircleButton)
-  document.getElementsByClassName('slide-up-tab-content')[0].appendChild(ff1)
 
   var checkCircleButton = document.createElement('i')
   checkCircleButton.setAttribute('class', '  fa fa-check-circle fa-5x location-select-tick')
   checkCircleButton.setAttribute('aria-hidden', 'true')
-  ff1.appendChild(checkCircleButton)
-  document.getElementsByClassName('slide-up-tab-content')[0].appendChild(ff1)
+
+  addNuggetForm.appendChild(timesCircleButton)
+  addNuggetForm.appendChild(checkCircleButton)
 
   var newDiv = document.createElement('div')
   newDiv.classList.add('slide-up-tab')
-  newDiv.classList.add('nugget-add-container')
+  newDiv.classList.add('add-nugget-tab')
   // newDiv.classList.add('fa-check-circle')
   // newDiv.classList.add('fa-times-circle')
   // newDiv.className = 'slide-up-tab nugget-add-container fa fa-check-circle'
   // console.log(newDiv)
-  newDiv.appendChild(ff1)
+  newDiv.appendChild(addNuggetForm)
   document.body.appendChild(newDiv)
   // slide-up-tab-content
-})
+}
