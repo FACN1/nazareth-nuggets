@@ -23,6 +23,7 @@ html, body {
   margin: 0;
   height: 100%;
   width: 100%;
+  overflow: hidden;
 }
 
 #map {
@@ -63,11 +64,15 @@ html, body {
   top: 50%;
   transform: translateY(-30%);
 }
+
 /*
 3) SLIDE-UP-TAB
 */
 .slide-up-tab {
   position: absolute;
+  top: 100%;
+  left: 0%;
+  z-index: 200;
 
   width: 95%;
   box-sizing: border-box;
@@ -81,6 +86,7 @@ html, body {
 
   font-family: 'Lato', sans-serif;
   background: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s;
 }
 
 .slide-up-tab-x-button {
@@ -92,12 +98,14 @@ html, body {
 /*
 4) NUGGET-INFO
 */
+.nugget-info-tab {
+  height: 80%;
+}
+
 .nugget-info-tab.visible {
   top: 20%;
   left: 0%;
   z-index: 10;
-
-  height: 80%;
 
   border-top: 0.4em solid rgb(255, 178, 53);
 }
@@ -126,7 +134,8 @@ html, body {
 /*
 6) LOCATION-SELECT
 */
-.location-select-display.visible {
+.location-select-display {
+  display: none;
   z-index: 100;
   /* to allow map events to happen 'under' this screen */
   pointer-events: none;
@@ -142,6 +151,9 @@ html, body {
     );
 }
 
+.location-select-display.visible {
+  display: block;
+}
 
 .location-select-pin {
   position: absolute;
