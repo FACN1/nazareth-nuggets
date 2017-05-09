@@ -127,29 +127,24 @@ var nazarethNuggets = (function () { // eslint-disable-line
   // on zoomend is good but not perfect, because can zoom multiple levels before this function will re-run
   mymap.on('zoomend', displayCorrectIcons)
 
-  var locationSelectDisplay = document.querySelector('.location-select-display')
-  var centerButton = document.querySelector('.center-button')
-  centerButton.addEventListener('click', function (e) {
-    mymap.locate({setView: true})
-  })
-
   // Amazon S3
   document.querySelector('.image-input').onchange = function () {
-    const files = document.querySelector('.image-input').files
-    const file = files[0]
+    var files = document.querySelector('.image-input').files
+    var file = files[0]
     if (file === null) {
       // should send the user that he didn't uplaod a file or it wasn't succeful
+      return
     }
     getSignedRequest(file)
   }
 
   function getSignedRequest (file) {
-    const xhr = new XMLHttpRequest()
+    var xhr = new XMLHttpRequest()
     xhr.open('GET', '/sign-s3?file-name=' + file.name + '&file-type=' + file.type)
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
-          const response = JSON.parse(xhr.responseText)
+          var response = JSON.parse(xhr.responseText)
           uploadFile(file, response.signedRequest, response.url)
         } else {
           // should send the user a message saying that uplading the image wasn't succeful and try again
@@ -160,7 +155,7 @@ var nazarethNuggets = (function () { // eslint-disable-line
   }
 
   function uploadFile (file, signedRequest, url) {
-    const xhr = new XMLHttpRequest()
+    var xhr = new XMLHttpRequest()
     xhr.open('PUT', signedRequest)
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4) {
@@ -174,6 +169,12 @@ var nazarethNuggets = (function () { // eslint-disable-line
     }
     xhr.send(file)
   }
+
+  var locationSelectDisplay = document.querySelector('.location-select-display')
+  var centerButton = document.querySelector('.center-button')
+  centerButton.addEventListener('click', function (e) {
+    mymap.locate({setView: true})
+  })
 
   var locationSelectTick = document.querySelector('.location-select-tick')
   locationSelectTick.addEventListener('click', function (e) {
