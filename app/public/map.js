@@ -142,8 +142,8 @@ var nazarethNuggets = (function () { // eslint-disable-line
   var locationSelectCross = document.querySelector('.location-select-cross')
   locationSelectCross.addEventListener('click', function (e) {
     locationSelectDisplay.classList.toggle('visible')
-    
-  var locationSelectDisplay = document.querySelector('.location-select-display')
+  })
+
   var addNuggetButton = document.querySelector('.add-nugget-button')
   addNuggetButton.addEventListener('click', function (e) {
     locationSelectDisplay.classList.toggle('visible')
