@@ -8,21 +8,6 @@ var nazarethNuggets = (function () { // eslint-disable-line
     [32.723174, 35.341721]
   ]
 
-  function requestNuggets (method, url, callback) {
-    var xhr = new XMLHttpRequest()
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-        var response = JSON.parse(xhr.responseText)
-        callback(null, response)
-      }
-      if (xhr.status === 500) {
-        callback(new Error('Status code:' + xhr.status))
-      }
-    }
-    xhr.open(method, url)
-    xhr.send()
-  }
-
   var bigIconsMap = {
     food: L.icon({
       iconUrl: './assets/food.png',
@@ -53,25 +38,96 @@ var nazarethNuggets = (function () { // eslint-disable-line
     })
   }
 
+  function requestNuggets (method, url, callback) {
+    var xhr = new XMLHttpRequest()
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        var response = JSON.parse(xhr.responseText)
+        callback(null, response)
+      }
+      if (xhr.status === 500) {
+        callback(new Error('Status code:' + xhr.status))
+      }
+    }
+    xhr.open(method, url)
+    xhr.send()
+  }
+
+  // function to close an info tab- currently only works for the x button on the tab, needs to be changed to work for e.g. a drag down action or a click on the map.
+  function closeTab (e) {
+    // the button's parent node is the slide-up-tab
+    e.target.parentNode.classList.remove('visible')
+    // timeout to allow animation to happen...
+    setTimeout(function () {
+      document.body.removeChild(e.target.parentNode)
+    }, 300)
+  }
+
+  function createNuggetInfoTab (info) {
+    var nuggetInfoTab = document.createElement('div')
+    nuggetInfoTab.setAttribute('class', 'slide-up-tab nugget-info-tab')
+
+    var xButton = document.createElement('i')
+    xButton.setAttribute('class', 'slide-up-tab-x-button fa fa-times')
+    xButton.setAttribute('aria-hidden', 'true')
+    xButton.addEventListener('click', closeTab, {once: true})
+    nuggetInfoTab.appendChild(xButton)
+
+    var title = document.createElement('h3')
+    title.setAttribute('class', 'nugget-title')
+    title.textContent = info.title
+    nuggetInfoTab.appendChild(title)
+
+    var author = document.createElement('p')
+    author.setAttribute('class', 'nugget-author')
+    author.textContent = 'submitted by ' + info.author
+    nuggetInfoTab.appendChild(author)
+
+    if (info.img_url) {
+      var image = document.createElement('img')
+      image.setAttribute('class', 'nugget-image')
+      image.setAttribute('src', info.img_url)
+      image.setAttribute('alt', info.title)
+      nuggetInfoTab.appendChild(image)
+    }
+
+    var description = document.createElement('p')
+    description.setAttribute('class', 'nugget-description')
+    description.textContent = info.description
+    nuggetInfoTab.appendChild(description)
+
+    return nuggetInfoTab
+  }
+
+  function displayNuggetInfo (e) {
+    var nuggetInfo = e.target.options
+    var infoTab = createNuggetInfoTab(nuggetInfo)
+    document.body.appendChild(infoTab)
+    // this setTimeout is kind of ridiculous but it is a way to make the scroll up animation happen
+    setTimeout(function () {
+      infoTab.classList.add('visible')
+    }, 50)
+  }
+
+  function createMarker (nugget, iconsMap) {
+    return L.marker([nugget.lat, nugget.long], {
+      id: nugget.id,
+      category: nugget.category,
+      title: nugget.title,
+      description: nugget.description,
+      img_url: nugget.img_url,
+      author: nugget.author,
+      icon: iconsMap[nugget.category]
+    })
+    .on('click', displayNuggetInfo)
+  }
+
   function createIconsLayer (nuggets, iconsMap) {
   // nuggets is an array of objects which holds the data from the db
-    var icons = nuggets.map(function (nugget) {
-      // for each nugget we want to make a marker and put it on the map
-      return L.marker([nugget.lat, nugget.long], {
-        id: nugget.id,
-        category: nugget.category,
-        title: nugget.title,
-        description: nugget.description,
-        img_url: nugget.img_url,
-        author: nugget.author,
-        icon: iconsMap[nugget.category]
-      })
-      .on('click', function (e) {
-        // to be implemented
-        console.log(e.target.options)
-      })
+    var markers = nuggets.map(function (nugget) {
+      return createMarker(nugget, iconsMap)
     })
-    return L.layerGroup(icons)
+    return L.layerGroup(markers)
   }
 
   var mymap = L.map('map', {
@@ -127,6 +183,49 @@ var nazarethNuggets = (function () { // eslint-disable-line
   // on zoomend is good but not perfect, because can zoom multiple levels before this function will re-run
   mymap.on('zoomend', displayCorrectIcons)
 
+  // Amazon S3
+  document.querySelector('.image-input').onchange = function () {
+    var files = document.querySelector('.image-input').files
+    var file = files[0]
+    if (file === null) {
+      // should send the user that he didn't uplaod a file or it wasn't succeful
+      return
+    }
+    getSignedRequest(file)
+  }
+
+  function getSignedRequest (file) {
+    var xhr = new XMLHttpRequest()
+    xhr.open('GET', '/sign-s3?file-name=' + file.name + '&file-type=' + file.type)
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          var response = JSON.parse(xhr.responseText)
+          uploadFile(file, response.signedRequest, response.url)
+        } else {
+          // should send the user a message saying that uplading the image wasn't succeful and try again
+        }
+      }
+    }
+    xhr.send()
+  }
+
+  function uploadFile (file, signedRequest, url) {
+    var xhr = new XMLHttpRequest()
+    xhr.open('PUT', signedRequest)
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          // adds the url to a hidden input in the form to send it to the server
+          document.querySelector('.hidden-input-in-form').value = url
+        } else {
+          // should send the user a message saying that uplading the image wasn't succeful and try again
+        }
+      }
+    }
+    xhr.send(file)
+  }
+
   var locationSelectDisplay = document.querySelector('.location-select-display')
   var centerButton = document.querySelector('.center-button')
   centerButton.addEventListener('click', function (e) {
@@ -147,12 +246,6 @@ var nazarethNuggets = (function () { // eslint-disable-line
   var addNuggetButton = document.querySelector('.add-nugget-button')
   addNuggetButton.addEventListener('click', function (e) {
     locationSelectDisplay.classList.toggle('visible')
-  })
-
-  var infoTabCrossButton = document.querySelector('.slide-up-tab-x-button')
-  var nuggetInfoTab = document.querySelector('.nugget-info-tab')
-  infoTabCrossButton.addEventListener('click', function (e) {
-    nuggetInfoTab.classList.toggle('visible')
   })
 })()
 
