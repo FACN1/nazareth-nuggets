@@ -53,6 +53,16 @@ var nazarethNuggets = (function () { // eslint-disable-line
     xhr.send()
   }
 
+  // function to close an info tab- currently only works for the x button on the tab, needs to be changed to work for e.g. a drag down action or a click on the map.
+  function closeTab (e) {
+    // the button's parent node is the slide-up-tab
+    e.target.parentNode.classList.remove('visible')
+    // timeout to allow animation to happen...
+    setTimeout(function () {
+      document.body.removeChild(e.target.parentNode)
+    }, 300)
+  }
+
   function createNuggetInfoTab (info) {
     var nuggetInfoTab = document.createElement('div')
     nuggetInfoTab.setAttribute('class', 'slide-up-tab nugget-info-tab')
@@ -60,6 +70,7 @@ var nazarethNuggets = (function () { // eslint-disable-line
     var xButton = document.createElement('i')
     xButton.setAttribute('class', 'slide-up-tab-x-button fa fa-times')
     xButton.setAttribute('aria-hidden', 'true')
+    xButton.addEventListener('click', closeTab, {once: true})
     nuggetInfoTab.appendChild(xButton)
 
     var title = document.createElement('h3')
@@ -192,11 +203,5 @@ var nazarethNuggets = (function () { // eslint-disable-line
   var addNuggetButton = document.querySelector('.add-nugget-button')
   addNuggetButton.addEventListener('click', function (e) {
     locationSelectDisplay.classList.toggle('visible')
-  })
-
-  var infoTabCrossButton = document.querySelector('.slide-up-tab-x-button')
-  var nuggetInfoTab = document.querySelector('.nugget-info-tab')
-  infoTabCrossButton.addEventListener('click', function (e) {
-    nuggetInfoTab.classList.toggle('visible')
   })
 })()
