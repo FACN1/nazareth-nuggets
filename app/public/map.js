@@ -92,8 +92,8 @@ var nazarethNuggets = (function () { // eslint-disable-line
     }
 
     var description = document.createElement('p')
-    author.setAttribute('class', 'nugget-description')
-    author.textContent = info.description
+    description.setAttribute('class', 'nugget-description')
+    description.textContent = info.description
     nuggetInfoTab.appendChild(description)
 
     return nuggetInfoTab
