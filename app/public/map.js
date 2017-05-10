@@ -91,6 +91,7 @@
     setTimeout(function () {
       document.body.removeChild(e.target.parentNode)
     }, TAB_ANIMATION_DURATION)
+    state.currentView = 'map'
   }
 
   function createNuggetInfoTab (info) {
@@ -130,6 +131,9 @@
   }
 
   function displayNuggetInfo (e) {
+    if (state.currentView !== 'map') {
+      return
+    }
     var nuggetInfo = e.target.options
     var infoTab = createNuggetInfoTab(nuggetInfo)
     document.body.appendChild(infoTab)
@@ -137,9 +141,13 @@
     setTimeout(function () {
       infoTab.classList.add('visible')
     }, 50)
+    state.currentView = 'infoTab'
   }
 
   function displayForm (e) {
+    if (state.currentView !== 'locationSelect') {
+      return
+    }
     locationSelectDisplay.classList.remove('visible')
     var clickedLocation = mymap.getCenter()
     var addNuggetFormTab = createForm(clickedLocation.lat, clickedLocation.lng)
@@ -147,6 +155,7 @@
     setTimeout(function () {
       addNuggetFormTab.classList.add('visible')
     }, 50)
+    state.currentView = 'formTab'
   }
 
   function createMarker (nugget, iconsMap) {
@@ -189,7 +198,11 @@
   // don't really want to set coordinates here and add to map but I think I have to
   var userLocationMarker = L.marker([0, 0]).addTo(mymap)
   var userLocationRadius = L.circle([0, 0], 1).addTo(mymap)
-  var isWatchingUser = false
+  var state = {
+    isWatchingUser: false,
+    // currentView has : map, infoTab, formTab, locationSelect
+    currentView: 'map'
+  }
 
   function onLocationFound (e) {
     var radius = e.accuracy / 2
@@ -251,6 +264,7 @@
       errorMessage.textContent = '*Please fill in the form'
       return
     }
+
     // send data to server
     makeRequest('POST', '/add-nugget', formData, function (err) {
       if (err) {
@@ -263,6 +277,7 @@
       createMarker(formData, bigIconsMap).addTo(bigIconsLayer)
       // remove form from page
       form.parentNode.classList.remove('visible')
+      state.currentView = 'map'
       setTimeout(function () {
         document.body.removeChild(form.parentNode)
       }, TAB_ANIMATION_DURATION)
@@ -272,14 +287,14 @@
   var locationSelectDisplay = document.querySelector('.location-select-display')
   var centerButton = document.querySelector('.center-button')
   centerButton.addEventListener('click', function (e) {
-    if (isWatchingUser) {
+    if (state.isWatchingUser) {
       mymap.stopLocate()
       centerButton.classList.remove('blue')
     } else {
       centerButton.classList.add('blue')
       mymap.locate({setView: true, watch: true})
     }
-    isWatchingUser = !isWatchingUser
+    state.isWatchingUser = !state.isWatchingUser
   })
 
   var locationSelectTick = document.querySelector('.location-select-tick')
@@ -288,11 +303,16 @@
   var locationSelectCross = document.querySelector('.location-select-cross')
   locationSelectCross.addEventListener('click', function (e) {
     locationSelectDisplay.classList.toggle('visible')
+    state.currentView = 'map'
   })
 
   var addNuggetButton = document.querySelector('.add-nugget-button')
   addNuggetButton.addEventListener('click', function (e) {
+    if (state.currentView !== 'map') {
+      return
+    }
     locationSelectDisplay.classList.toggle('visible')
+    state.currentView = 'locationSelect'
   })
 
   function createForm (lat, lng) { // eslint-disable-line
