@@ -163,7 +163,12 @@
 
   // USER LOCATION
   // don't really want to set coordinates here and add to map but I think I have to
-  var userLocationMarker = L.marker([0, 0]).addTo(mymap)
+  var userLocationMarker = L.marker([0, 0], {
+    icon: L.icon({
+      iconUrl: './assets/user-location-icon.png',
+      iconSize: [12, 12]
+    })
+  }).addTo(mymap)
   var userLocationRadius = L.circle([0, 0], 1).addTo(mymap)
   var isWatchingUser = false
 
