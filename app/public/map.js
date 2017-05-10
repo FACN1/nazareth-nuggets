@@ -269,6 +269,7 @@
 
     var txtBoxTitle1 = document.createElement('input')
     txtBoxTitle1.setAttribute('type', 'text')
+    txtBoxTitle1.setAttribute('name', 'title')
     txtBoxTitle1.classList.add('add-form-input')
 
     addNuggetForm.appendChild(paraTitle1)
@@ -281,21 +282,25 @@
     paraCategory2.appendChild(paraCategory2Attr)
 
     var DropDownCategory = document.createElement('select') // input element, text
-    DropDownCategory.setAttribute('name', 'DropDownCategoryName')
+    DropDownCategory.setAttribute('name', 'category')
     DropDownCategory.classList.add('add-form-category-input')
     DropDownCategory.classList.add('add-form-input')
 
-    var option1 = document.createElement('option') // input element, text
+    var option1 = document.createElement('option')
     option1.textContent = 'Food'
+    option1.setAttribute('value', 'food')
     DropDownCategory.appendChild(option1)
-    var option2 = document.createElement('option') // input element, text
+    var option2 = document.createElement('option')
     option2.textContent = 'Info'
+    option2.setAttribute('value', 'info')
     DropDownCategory.appendChild(option2)
-    var option3 = document.createElement('option') // input element, text
+    var option3 = document.createElement('option')
     option3.textContent = 'Fun Fact!'
+    option3.setAttribute('value', 'fun fact')
     DropDownCategory.appendChild(option3)
-    var option4 = document.createElement('option') // input element, text
+    var option4 = document.createElement('option')
     option4.textContent = 'View'
+    option4.setAttribute('value', 'view')
     DropDownCategory.appendChild(option4)
 
     addNuggetForm.appendChild(paraCategory2)
@@ -309,7 +314,6 @@
 
     var uploadBtn1 = document.createElement('input')  // input element, text
     uploadBtn1.setAttribute('type', 'file')
-    uploadBtn1.setAttribute('name', 'UploadBtnName')
     uploadBtn1.setAttribute('class', 'image-input')
 
     addNuggetForm.appendChild(paraUpload3)
@@ -325,6 +329,7 @@
     txtBoxDescription1.setAttribute('class', 'description-text-area')
     txtBoxDescription1.setAttribute('rows', 8)
     txtBoxDescription1.setAttribute('cols', 80)
+    txtBoxDescription1.setAttribute('name', 'description')
     txtBoxDescription1.classList.add('add-form-input')
 
     addNuggetForm.appendChild(paraDescription4)
@@ -338,6 +343,7 @@
 
     var txtboxName = document.createElement('input')
     txtboxName.setAttribute('type', 'text')
+    txtboxName.setAttribute('value', 'author')
     txtboxName.classList.add('add-form-input')
 
     addNuggetForm.appendChild(paraName)
@@ -366,11 +372,17 @@
     var latInput = document.createElement('input')
     latInput.setAttribute('type', 'hidden')
     latInput.setAttribute('value', lat)
+    latInput.setAttribute('name', 'lat')
 
     // create a hidden input for the longitude
     var lngInput = document.createElement('input')
     lngInput.setAttribute('type', 'hidden')
     lngInput.setAttribute('value', lng)
+    lngInput.setAttribute('name', 'long')
+
+    var imgHiddenInput = document.createElement('input')
+    imgHiddenInput.setAttribute('type', 'hidden')
+    imgHiddenInput.setAttribute('name', 'img_url')
 
     addNuggetForm.appendChild(latInput)
     addNuggetForm.appendChild(lngInput)
