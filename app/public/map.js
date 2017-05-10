@@ -67,6 +67,7 @@
     setTimeout(function () {
       document.body.removeChild(e.target.parentNode)
     }, TAB_ANIMATION_DURATION)
+    state.currentView = 'map'
   }
 
   function createNuggetInfoTab (info) {
@@ -106,6 +107,9 @@
   }
 
   function displayNuggetInfo (e) {
+    if (state.currentView !== 'map') {
+      return
+    }
     var nuggetInfo = e.target.options
     var infoTab = createNuggetInfoTab(nuggetInfo)
     document.body.appendChild(infoTab)
@@ -113,6 +117,7 @@
     setTimeout(function () {
       infoTab.classList.add('visible')
     }, 50)
+    state.currentView = 'infoTab'
   }
 
   function displayForm (e) {
@@ -165,7 +170,11 @@
   // don't really want to set coordinates here and add to map but I think I have to
   var userLocationMarker = L.marker([0, 0]).addTo(mymap)
   var userLocationRadius = L.circle([0, 0], 1).addTo(mymap)
-  var isWatchingUser = false
+  var state = {
+    isWatchingUser: false,
+    // currentView has : map, infoTab, formTab, locationSelect
+    currentView: 'map'
+  }
 
   function onLocationFound (e) {
     var radius = e.accuracy / 2
@@ -248,14 +257,14 @@
   var locationSelectDisplay = document.querySelector('.location-select-display')
   var centerButton = document.querySelector('.center-button')
   centerButton.addEventListener('click', function (e) {
-    if (isWatchingUser) {
+    if (state.isWatchingUser) {
       mymap.stopLocate()
       centerButton.classList.remove('blue')
     } else {
       centerButton.classList.add('blue')
       mymap.locate({setView: true, watch: true})
     }
-    isWatchingUser = !isWatchingUser
+    state.isWatchingUser = !state.isWatchingUser
   })
 
   var locationSelectTick = document.querySelector('.location-select-tick')
