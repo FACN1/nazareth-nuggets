@@ -70,6 +70,7 @@ html, body {
 */
 .slide-up-tab {
   position: absolute;
+
   top: 100%;
   left: 0%;
   z-index: 200;
@@ -86,6 +87,7 @@ html, body {
 
   font-family: 'Lato', sans-serif;
   background: rgba(255, 255, 255, 0.9);
+
   transition: all 0.3s;
 }
 
@@ -131,6 +133,78 @@ html, body {
 5) ADD-FORM
 */
 
+.location-select {
+    z-index: 1000;
+}
+
+.add-nugget-tab {
+  top: 100%;
+  left: 0%;
+  z-index: 1000;
+  position: absolute;
+  background: rgba(231, 255, 230, 0.85);
+  width: 95%;
+  height: 88%;
+  border-top: 8px solid teal;
+  transition: all 0.4s ease;
+  overflow: scroll;
+}
+
+
+.add-nugget-tab.visible {
+  top: 10%;
+}
+
+.add-nugget-tab.not-visible {
+  top: 100%;
+}
+
+.add-form-input {
+  margin: auto;
+  display: block;
+  padding: 0.5rem;
+  border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 1em;
+  border: none;
+}
+
+.add-form-category-input {
+  height: 3em;
+}
+
+.description-text-area{
+  width: 100%;
+}
+
+.add-form-buttons {
+  margin: 1.5em;
+  height: 3em;
+}
+
+.add-form-check {
+  position: absolute;
+  color: green;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, white 55%, transparent 45%);
+  left: 42%;
+}
+
+.add-form-times {
+  position: absolute;
+  color: red;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, white 55%, transparent 45%);
+  left: 58%;
+}
+
+.formPara {
+  font-size: 1.2em;
+  font-weight:bold;
+  margin-bottom: 0.4em;
+}
+
 /*
 6) LOCATION-SELECT
 */
@@ -168,7 +242,7 @@ html, body {
 .location-select-tick {
   pointer-events: initial;
   position: absolute;
-  left: 50%;
+  left: 50%;  /*left: 10%;*/
   top: 75%;
   transform: translateX(-50%);
   color: var(--tick-button-colour);
@@ -179,7 +253,7 @@ html, body {
   pointer-events: initial;
   position: absolute;
   left: 50%;
-  top: 90%;
+  top: 90%; /*top: 75%;*/
   transform: translateX(-50%);
   color: var(--cross-button-colour);
   background: radial-gradient(circle, white 55%, transparent 45%);

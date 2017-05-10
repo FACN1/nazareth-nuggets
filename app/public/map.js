@@ -1,6 +1,6 @@
 /* global L XMLHttpRequest */
 
-var nazarethNuggets = (function () { // eslint-disable-line
+(function () { // eslint-disable-line
 
   // bounds for leaflet in format: [south-west, north-east]
   var nazarethBounds = [
@@ -110,14 +110,13 @@ var nazarethNuggets = (function () { // eslint-disable-line
   }
 
   function displayForm (e) {
-    // waiting for createForm function !!!!!!
-    // locationSelectDisplay.classList.remove('visible')
-    // var clickedLocation = mymap.getCenter()
-    // var addNuggetFormTab = createForm(clickedLocation.lat, clickedLocation.lng)
-    // document.body.appendChild(addNuggetFormTab)
-    // setTimeout(function () {
-    //   addNuggetFormTab.classList.add('visible')
-    // }, 50)
+    locationSelectDisplay.classList.remove('visible')
+    var clickedLocation = mymap.getCenter()
+    var addNuggetFormTab = createForm(clickedLocation.lat, clickedLocation.lng)
+    document.body.appendChild(addNuggetFormTab)
+    setTimeout(function () {
+      addNuggetFormTab.classList.add('visible')
+    }, 50)
   }
 
   function createMarker (nugget, iconsMap) {
@@ -256,4 +255,143 @@ var nazarethNuggets = (function () { // eslint-disable-line
   addNuggetButton.addEventListener('click', function (e) {
     locationSelectDisplay.classList.toggle('visible')
   })
+
+  function createForm (lat, lng) { // eslint-disable-line
+
+    // creates the form
+    var addNuggetForm = document.createElement('form')
+
+    // create the nugget title and its input then renders it to the form
+    var paraTitle1 = document.createElement('P')
+    var paraTitle1Attr = document.createTextNode('Title: ')
+    paraTitle1.classList.add('formPara')
+    paraTitle1.appendChild(paraTitle1Attr)
+
+    var txtBoxTitle1 = document.createElement('input')
+    txtBoxTitle1.setAttribute('type', 'text')
+    txtBoxTitle1.setAttribute('name', 'title')
+    txtBoxTitle1.classList.add('add-form-input')
+
+    addNuggetForm.appendChild(paraTitle1)
+    addNuggetForm.appendChild(txtBoxTitle1)
+
+    // create category and its select then renders it to the form
+    var paraCategory2 = document.createElement('P')
+    var paraCategory2Attr = document.createTextNode('Category: ')
+    paraCategory2.classList.add('formPara')
+    paraCategory2.appendChild(paraCategory2Attr)
+
+    var DropDownCategory = document.createElement('select') // input element, text
+    DropDownCategory.setAttribute('name', 'category')
+    DropDownCategory.classList.add('add-form-category-input')
+    DropDownCategory.classList.add('add-form-input')
+
+    var option1 = document.createElement('option')
+    option1.textContent = 'Food'
+    option1.setAttribute('value', 'food')
+    DropDownCategory.appendChild(option1)
+    var option2 = document.createElement('option')
+    option2.textContent = 'Info'
+    option2.setAttribute('value', 'info')
+    DropDownCategory.appendChild(option2)
+    var option3 = document.createElement('option')
+    option3.textContent = 'Fun Fact!'
+    option3.setAttribute('value', 'fun fact')
+    DropDownCategory.appendChild(option3)
+    var option4 = document.createElement('option')
+    option4.textContent = 'View'
+    option4.setAttribute('value', 'view')
+    DropDownCategory.appendChild(option4)
+
+    addNuggetForm.appendChild(paraCategory2)
+    addNuggetForm.appendChild(DropDownCategory)
+
+    // creates image input element and renders it to the form
+    var paraUpload3 = document.createElement('P')
+    var paraUpload3Attr = document.createTextNode('Upload Image: ')
+    paraUpload3.classList.add('formPara')
+    paraUpload3.appendChild(paraUpload3Attr)
+
+    var uploadBtn1 = document.createElement('input')  // input element, text
+    uploadBtn1.setAttribute('type', 'file')
+    uploadBtn1.setAttribute('class', 'image-input')
+
+    addNuggetForm.appendChild(paraUpload3)
+    addNuggetForm.appendChild(uploadBtn1)
+
+    // creates a text area for the description adn renders it to the form
+    var paraDescription4 = document.createElement('P')
+    var paraDescription4Attr = document.createTextNode('Description: ')
+    paraDescription4.classList.add('formPara')
+    paraDescription4.appendChild(paraDescription4Attr)
+
+    var txtBoxDescription1 = document.createElement('textarea')
+    txtBoxDescription1.setAttribute('class', 'description-text-area')
+    txtBoxDescription1.setAttribute('rows', 8)
+    txtBoxDescription1.setAttribute('cols', 80)
+    txtBoxDescription1.setAttribute('name', 'description')
+    txtBoxDescription1.classList.add('add-form-input')
+
+    addNuggetForm.appendChild(paraDescription4)
+    addNuggetForm.appendChild(txtBoxDescription1)
+
+    // create the submitter input and renders it to the form
+    var paraName = document.createElement('P')
+    var paraNameAttr = document.createTextNode('Your name: ')
+    paraName.classList.add('formPara')
+    paraName.appendChild(paraNameAttr)
+
+    var txtboxName = document.createElement('input')
+    txtboxName.setAttribute('type', 'text')
+    txtboxName.setAttribute('name', 'author')
+    txtboxName.classList.add('add-form-input')
+
+    addNuggetForm.appendChild(paraName)
+    addNuggetForm.appendChild(txtboxName)
+
+    // create a div to append buttons (check/cross) to it to have moe control over them on the form tab
+    var buttonsContainer = document.createElement('div')
+    buttonsContainer.classList.add('add-form-buttons')
+
+    // creates the cross button
+    var timesCircleButton = document.createElement('i')
+    timesCircleButton.setAttribute('class', 'fa fa-times-circle fa-3x add-form-times')
+    timesCircleButton.setAttribute('aria-hidden', 'true')
+
+    // creates the check button
+    var checkCircleButton = document.createElement('i')
+    checkCircleButton.setAttribute('class', 'fa fa-check-circle fa-3x add-form-check')
+    checkCircleButton.setAttribute('aria-hidden', 'true')
+
+    // appends the buttons to the div then append the div to the form
+    buttonsContainer.appendChild(checkCircleButton)
+    buttonsContainer.appendChild(timesCircleButton)
+    addNuggetForm.appendChild(buttonsContainer)
+
+    // create a hidden input for the latitude
+    var latInput = document.createElement('input')
+    latInput.setAttribute('type', 'hidden')
+    latInput.setAttribute('value', lat)
+    latInput.setAttribute('name', 'lat')
+
+    // create a hidden input for the longitude
+    var lngInput = document.createElement('input')
+    lngInput.setAttribute('type', 'hidden')
+    lngInput.setAttribute('value', lng)
+    lngInput.setAttribute('name', 'long')
+
+    var imgHiddenInput = document.createElement('input')
+    imgHiddenInput.setAttribute('type', 'hidden')
+    imgHiddenInput.setAttribute('name', 'img_url')
+
+    addNuggetForm.appendChild(latInput)
+    addNuggetForm.appendChild(lngInput)
+
+    var newDiv = document.createElement('div')
+    newDiv.classList.add('slide-up-tab')
+    newDiv.classList.add('add-nugget-tab')
+
+    newDiv.appendChild(addNuggetForm)
+    return newDiv
+  }
 })()
