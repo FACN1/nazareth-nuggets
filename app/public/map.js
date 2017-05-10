@@ -207,7 +207,14 @@
     inputs.forEach(function (input) {
       formData[input.name] = input.value
     })
-    // validate data ?
+    validateData()
+    // validate data
+    function validateData (formData) {
+      if (formData.title.trim() === '') return false
+      if (formData.description.trim() === '') return false
+      if (formData.author.trim() === '') return false
+      return true
+    }
     // send data to server
     makeRequest('POST', '/add-nugget', formData, function (err) {
       if (err) {
