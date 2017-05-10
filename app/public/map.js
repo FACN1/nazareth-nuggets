@@ -12,30 +12,54 @@
 
   var bigIconsMap = {
     food: L.icon({
-      iconUrl: './assets/food.png',
+      iconUrl: './assets/icons/food.png',
+      iconSize: [24, 24]
+    }),
+    'fun fact': L.icon({
+      iconUrl: './assets/icons/fun-fact.png',
+      iconSize: [24, 24]
+    }),
+    history: L.icon({
+      iconUrl: './assets/icons/history.png',
+      iconSize: [24, 24]
+    }),
+    information: L.icon({
+      iconUrl: './assets/icons/information.png',
       iconSize: [24, 24]
     }),
     nature: L.icon({
-      iconUrl: './assets/nature.png',
+      iconUrl: './assets/icons/nature.png',
       iconSize: [24, 24]
     }),
-    exclamation: L.icon({
-      iconUrl: './assets/exclamation.png',
+    viewpoint: L.icon({
+      iconUrl: './assets/icons/viewpoint.png',
       iconSize: [24, 24]
     })
   }
 
   var smallIconsMap = {
     food: L.icon({
-      iconUrl: './assets/food-small.png',
+      iconUrl: './assets/icons-small/food-small.png',
+      iconSize: [8, 8]
+    }),
+    'fun fact': L.icon({
+      iconUrl: './assets/icons-small/fun-fact-small.png',
+      iconSize: [8, 8]
+    }),
+    history: L.icon({
+      iconUrl: './assets/icons-small/history-small.png',
+      iconSize: [8, 8]
+    }),
+    information: L.icon({
+      iconUrl: './assets/icons-small/information-small.png',
       iconSize: [8, 8]
     }),
     nature: L.icon({
-      iconUrl: './assets/nature-small.png',
+      iconUrl: './assets/icons-small/nature-small.png',
       iconSize: [8, 8]
     }),
-    exclamation: L.icon({
-      iconUrl: './assets/exclamation-small.png',
+    viewpoint: L.icon({
+      iconUrl: './assets/icons-small/viewpoint-small.png',
       iconSize: [8, 8]
     })
   }
@@ -67,6 +91,7 @@
     setTimeout(function () {
       document.body.removeChild(e.target.parentNode)
     }, TAB_ANIMATION_DURATION)
+    state.currentView = 'map'
   }
 
   function createNuggetInfoTab (info) {
@@ -106,6 +131,9 @@
   }
 
   function displayNuggetInfo (e) {
+    if (state.currentView !== 'map') {
+      return
+    }
     var nuggetInfo = e.target.options
     var infoTab = createNuggetInfoTab(nuggetInfo)
     document.body.appendChild(infoTab)
@@ -113,16 +141,22 @@
     setTimeout(function () {
       infoTab.classList.add('visible')
     }, 50)
+    state.currentView = 'infoTab'
   }
 
   function displayForm (e) {
+    if (state.currentView !== 'locationSelect') {
+      return
+    }
     locationSelectDisplay.classList.remove('visible')
     var clickedLocation = mymap.getCenter()
     var addNuggetFormTab = createForm(clickedLocation.lat, clickedLocation.lng)
     document.body.appendChild(addNuggetFormTab)
+    document.querySelector('.add-nugget-button').style.display = 'none'
     setTimeout(function () {
       addNuggetFormTab.classList.add('visible')
     }, 50)
+    state.currentView = 'formTab'
   }
 
   function createMarker (nugget, iconsMap) {
@@ -170,7 +204,11 @@
     })
   }).addTo(mymap)
   var userLocationRadius = L.circle([0, 0], 1).addTo(mymap)
-  var isWatchingUser = false
+  var state = {
+    isWatchingUser: false,
+    // currentView has : map, infoTab, formTab, locationSelect
+    currentView: 'map'
+  }
 
   function onLocationFound (e) {
     var radius = e.accuracy / 2
@@ -232,7 +270,9 @@
       errorMessage.textContent = '*Please fill in the form'
       return
     }
+
     // send data to server
+    document.querySelector('.add-nugget-button').style.display = 'block'
     makeRequest('POST', '/add-nugget', formData, function (err) {
       if (err) {
         // pop up error message suggesting try to submit the orm again
@@ -244,6 +284,7 @@
       createMarker(formData, bigIconsMap).addTo(bigIconsLayer)
       // remove form from page
       form.parentNode.classList.remove('visible')
+      state.currentView = 'map'
       setTimeout(function () {
         document.body.removeChild(form.parentNode)
       }, TAB_ANIMATION_DURATION)
@@ -253,14 +294,14 @@
   var locationSelectDisplay = document.querySelector('.location-select-display')
   var centerButton = document.querySelector('.center-button')
   centerButton.addEventListener('click', function (e) {
-    if (isWatchingUser) {
+    if (state.isWatchingUser) {
       mymap.stopLocate()
       centerButton.classList.remove('blue')
     } else {
       centerButton.classList.add('blue')
       mymap.locate({setView: true, watch: true})
     }
-    isWatchingUser = !isWatchingUser
+    state.isWatchingUser = !state.isWatchingUser
   })
 
   var locationSelectTick = document.querySelector('.location-select-tick')
@@ -269,11 +310,16 @@
   var locationSelectCross = document.querySelector('.location-select-cross')
   locationSelectCross.addEventListener('click', function (e) {
     locationSelectDisplay.classList.toggle('visible')
+    state.currentView = 'map'
   })
 
   var addNuggetButton = document.querySelector('.add-nugget-button')
   addNuggetButton.addEventListener('click', function (e) {
+    if (state.currentView !== 'map') {
+      return
+    }
     locationSelectDisplay.classList.toggle('visible')
+    state.currentView = 'locationSelect'
   })
 
   function createForm (lat, lng) { // eslint-disable-line
@@ -305,22 +351,21 @@
     DropDownCategory.classList.add('add-form-category-input')
     DropDownCategory.classList.add('add-form-input')
 
-    var option1 = document.createElement('option')
-    option1.textContent = 'Food'
-    option1.setAttribute('value', 'food')
-    DropDownCategory.appendChild(option1)
-    var option2 = document.createElement('option')
-    option2.textContent = 'Info'
-    option2.setAttribute('value', 'info')
-    DropDownCategory.appendChild(option2)
-    var option3 = document.createElement('option')
-    option3.textContent = 'Fun Fact!'
-    option3.setAttribute('value', 'fun fact')
-    DropDownCategory.appendChild(option3)
-    var option4 = document.createElement('option')
-    option4.textContent = 'View'
-    option4.setAttribute('value', 'view')
-    DropDownCategory.appendChild(option4)
+    var categories = [
+      {value: 'fun fact', textContent: 'Fun fact'},
+      {value: 'viewpoint', textContent: 'Viewpoint'},
+      {value: 'history', textContent: 'History'},
+      {value: 'nature', textContent: 'Nature'},
+      {value: 'information', textContent: 'Information'},
+      {value: 'food', textContent: 'Food'}
+    ]
+
+    categories.forEach(function (category) {
+      var option = document.createElement('option')
+      option.setAttribute('value', category.value)
+      option.textContent = category.textContent
+      DropDownCategory.appendChild(option)
+    })
 
     addNuggetForm.appendChild(paraCategory2)
     addNuggetForm.appendChild(DropDownCategory)
@@ -380,6 +425,13 @@
     var timesCircleButton = document.createElement('i')
     timesCircleButton.setAttribute('class', 'fa fa-times-circle fa-3x add-form-times')
     timesCircleButton.setAttribute('aria-hidden', 'true')
+    timesCircleButton.addEventListener('click', function (e) {
+      setTimeout(function () {
+        document.body.removeChild(newDiv)
+      }, TAB_ANIMATION_DURATION)
+      newDiv.classList.toggle('visible')
+      locationSelectDisplay.classList.toggle('visible')
+    })
 
     // creates the check button
     var checkCircleButton = document.createElement('i')
