@@ -161,15 +161,22 @@
     accessToken: 'pk.eyJ1Ijoia2FyeXVtIiwiYSI6ImNqMjAzNGU4ZjAxa3EycW4xazFxcHZ6a2QifQ.m_dNO1l1sMkM7r4d5nlRRQ'
   }).addTo(mymap)
 
-  mymap.locate({setView: true})
+  // USER LOCATION
+  // don't really want to set coordinates here and add to map but I think I have to
+  var userLocationMarker = L.marker([0, 0]).addTo(mymap)
+  var userLocationRadius = L.circle([0, 0], 1).addTo(mymap)
+  var isWatchingUser = false
 
   function onLocationFound (e) {
     var radius = e.accuracy / 2
-    L.marker(e.latlng).addTo(mymap)
-    L.circle(e.latlng, radius).addTo(mymap)
+    userLocationMarker.setLatLng(e.latlng)
+    userLocationRadius.setLatLng(e.latlng)
+    userLocationRadius.setRadius(radius)
   }
 
   mymap.on('locationfound', onLocationFound)
+  // center on the user's location on initial load
+  mymap.locate({setView: true})
 
   // these variables are undefined until the db results come back
   var smallIconsLayer
@@ -241,7 +248,14 @@
   var locationSelectDisplay = document.querySelector('.location-select-display')
   var centerButton = document.querySelector('.center-button')
   centerButton.addEventListener('click', function (e) {
-    mymap.locate({setView: true})
+    if (isWatchingUser) {
+      mymap.stopLocate()
+      centerButton.classList.remove('blue')
+    } else {
+      centerButton.classList.add('blue')
+      mymap.locate({setView: true, watch: true})
+    }
+    isWatchingUser = !isWatchingUser
   })
 
   var locationSelectTick = document.querySelector('.location-select-tick')
