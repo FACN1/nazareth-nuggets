@@ -361,6 +361,10 @@
     var timesCircleButton = document.createElement('i')
     timesCircleButton.setAttribute('class', 'fa fa-times-circle fa-3x add-form-times')
     timesCircleButton.setAttribute('aria-hidden', 'true')
+    timesCircleButton.addEventListener('click', function (e) {
+      newDiv.classList.toggle('visible')
+      locationSelectDisplay.classList.toggle('visible')
+    })
 
     // creates the check button
     var checkCircleButton = document.createElement('i')
@@ -399,6 +403,7 @@
     var newDiv = document.createElement('div')
     newDiv.classList.add('slide-up-tab')
     newDiv.classList.add('add-nugget-tab')
+    newDiv.classList.add('form-container')
 
     // Amazon AWS3
     uploadBtn1.onchange = function () {

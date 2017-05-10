@@ -144,7 +144,7 @@ html, body {
   position: absolute;
   background: rgba(231, 255, 230, 0.85);
   width: 95%;
-  height: 88%;
+  height: 90%;
   border-top: 8px solid teal;
   transition: all 0.4s ease;
   overflow: scroll;
@@ -179,7 +179,7 @@ html, body {
 }
 
 .add-form-buttons {
-  margin: 1.5em;
+  margin-bottom: 1.5em;
   height: 3em;
 }
 
