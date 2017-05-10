@@ -9,11 +9,12 @@ CONTENTS:
 */
 
 :root {
-  --header-background: #55D6BE;
+  --header-background: rgba(0, 176, 39, 0.8);
   --title-font: 'Comfortaa', cursive;
+  --header-font: 'Patua One' cursive;
   --tick-button-colour: green;
   --cross-button-colour: red;
-  --blue-button-colour: blue;
+  --blue-button-colour: blue
 }
 
 /*
@@ -53,14 +54,15 @@ html, body {
   z-index: 100;
   position: absolute;
   width: 100%;
-  height: 3em;
+  height: 3.2em;
 }
 
 .app-title {
   text-align: center;
   margin: 0%;
   transform: translateY(30%);
-  font-family: var(--title-font);
+  font-family: 'Patua One';
+  font-weight: 200;
   font-size: 1.8rem;
 }
 
@@ -87,7 +89,6 @@ html, body {
   margin: 0em 2.5%;
   padding: 0.8em 1.6em;
   border-radius: 0.7em;
-
   overflow-x: hidden;
   overflow-y: scroll;
 
@@ -148,10 +149,9 @@ html, body {
   left: 0%;
   z-index: 1000;
   position: absolute;
-  background: rgba(231, 255, 230, 0.85);
-  width: 95%;
+  background: rgba(212, 255, 176, 0.9);
   height: 90%;
-  border-top: 8px solid teal;
+  border-top: 8px solid #c3c3c3;
   transition: all 0.4s ease;
   overflow: scroll;
 }
