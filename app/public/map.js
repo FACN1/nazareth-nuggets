@@ -2,6 +2,8 @@
 
 (function () { // eslint-disable-line
 
+  var TAB_ANIMATION_DURATION = 300
+
   // bounds for leaflet in format: [south-west, north-east]
   var nazarethBounds = [
     [32.683154, 35.278158],
@@ -38,7 +40,7 @@
     })
   }
 
-  function requestNuggets (method, url, callback) {
+  function makeRequest (method, url, data, callback) {
     var xhr = new XMLHttpRequest()
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4 && xhr.status === 200) {
@@ -50,6 +52,10 @@
       }
     }
     xhr.open(method, url)
+    if (data) {
+      xhr.setRequestHeader('content-type', 'application/json')
+      return (xhr.send(JSON.stringify(data)))
+    }
     xhr.send()
   }
 
@@ -60,7 +66,7 @@
     // timeout to allow animation to happen...
     setTimeout(function () {
       document.body.removeChild(e.target.parentNode)
-    }, 300)
+    }, TAB_ANIMATION_DURATION)
   }
 
   function createNuggetInfoTab (info) {
@@ -169,7 +175,7 @@
   var smallIconsLayer
   var bigIconsLayer
 
-  requestNuggets('GET', '/all-nuggets', function (err, nuggets) {
+  makeRequest('GET', '/all-nuggets', null, function (err, nuggets) {
     if (err) {
       // need to improve this
       return err
@@ -192,6 +198,31 @@
 
   // on zoomend is good but not perfect, because can zoom multiple levels before this function will re-run
   mymap.on('zoomend', displayCorrectIcons)
+
+  function submitForm (e) {
+    // get data from form fields
+    var form = e.target.parentNode.parentNode
+    var inputs = form.querySelectorAll('.add-form-input')
+    var formData = {}
+    inputs.forEach(function (input) {
+      formData[input.name] = input.value
+    })
+    // validate data ?
+    // send data to server
+    makeRequest('POST', '/add-nugget', formData, function (err) {
+      if (err) {
+        // pop up error message suggesting try to submit the orm again
+        return
+      }
+      // put pin on map (currently commented out awaiting implementation)
+      // addNuggetToMap(formData)
+      // remove form from page
+      form.parentNode.classList.remove('visible')
+      setTimeout(function () {
+        document.body.removeChild(form.parentNode)
+      }, TAB_ANIMATION_DURATION)
+    })
+  }
 
   // commented out temporarily to prevent script error
   // Amazon S3
@@ -362,6 +393,7 @@
     var checkCircleButton = document.createElement('i')
     checkCircleButton.setAttribute('class', 'fa fa-check-circle fa-3x add-form-check')
     checkCircleButton.setAttribute('aria-hidden', 'true')
+    checkCircleButton.addEventListener('click', submitForm)
 
     // appends the buttons to the div then append the div to the form
     buttonsContainer.appendChild(checkCircleButton)
@@ -370,22 +402,26 @@
 
     // create a hidden input for the latitude
     var latInput = document.createElement('input')
+    latInput.setAttribute('class', 'add-form-input')
     latInput.setAttribute('type', 'hidden')
     latInput.setAttribute('value', lat)
     latInput.setAttribute('name', 'lat')
 
     // create a hidden input for the longitude
     var lngInput = document.createElement('input')
+    lngInput.setAttribute('class', 'add-form-input')
     lngInput.setAttribute('type', 'hidden')
     lngInput.setAttribute('value', lng)
     lngInput.setAttribute('name', 'long')
 
     var imgHiddenInput = document.createElement('input')
+    imgHiddenInput.setAttribute('class', 'add-form-input')
     imgHiddenInput.setAttribute('type', 'hidden')
     imgHiddenInput.setAttribute('name', 'img_url')
 
     addNuggetForm.appendChild(latInput)
     addNuggetForm.appendChild(lngInput)
+    addNuggetForm.appendChild(imgHiddenInput)
 
     var newDiv = document.createElement('div')
     newDiv.classList.add('slide-up-tab')

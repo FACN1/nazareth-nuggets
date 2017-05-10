@@ -26,10 +26,10 @@ app.post('/add-nugget', function (req, res) {
   // add to the database
   query.addNugget(data, (err) => {
     if (err) {
-      return res.send('error adding nugget')
+      return res.status(500).send('error adding nugget')
     }
     // send back a response message
-    res.send('nugget added successfully')
+    res.send(JSON.stringify('nugget added successfully'))
   })
 })
 
