@@ -207,13 +207,18 @@
     inputs.forEach(function (input) {
       formData[input.name] = input.value
     })
-    validateData()
     // validate data
     function validateData (formData) {
       if (formData.title.trim() === '') return false
       if (formData.description.trim() === '') return false
       if (formData.author.trim() === '') return false
       return true
+    }
+    if (!validateData(formData)) {
+      // display message
+      var errorMessage = document.querySelector('.err-message')
+      errorMessage.textContent = 'Please fill in the form'
+      return
     }
     // send data to server
     makeRequest('POST', '/add-nugget', formData, function (err) {
@@ -299,6 +304,8 @@
     // creates the form
     var addNuggetForm = document.createElement('form')
 
+    var errorMessage = document.createElement('P')
+    errorMessage.classList.add('err-message')
     // create the nugget title and its input then renders it to the form
     var paraTitle1 = document.createElement('P')
     var paraTitle1Attr = document.createTextNode('Title: ')
@@ -310,6 +317,7 @@
     txtBoxTitle1.setAttribute('name', 'title')
     txtBoxTitle1.classList.add('add-form-input')
 
+    addNuggetForm.appendChild(errorMessage)
     addNuggetForm.appendChild(paraTitle1)
     addNuggetForm.appendChild(txtBoxTitle1)
 
