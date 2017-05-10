@@ -53,6 +53,7 @@
     }
     xhr.open(method, url)
     if (data) {
+      xhr.setRequestHeader('content-type', 'application/json')
       return (xhr.send(JSON.stringify(data)))
     }
     xhr.send()
@@ -198,7 +199,7 @@
   // on zoomend is good but not perfect, because can zoom multiple levels before this function will re-run
   mymap.on('zoomend', displayCorrectIcons)
 
-  function submitForm (e) { // eslint-disable-line
+  function submitForm (e) {
     // get data from form fields
     var form = e.target.parentNode.parentNode
     var inputs = form.querySelectorAll('.add-form-input')
@@ -216,9 +217,9 @@
       // put pin on map (currently commented out awaiting implementation)
       // addNuggetToMap(formData)
       // remove form from page
-      form.classList.remove('visible')
+      form.parentNode.classList.remove('visible')
       setTimeout(function () {
-        document.body.removeChild(form)
+        document.body.removeChild(form.parentNode)
       }, TAB_ANIMATION_DURATION)
     })
   }
@@ -392,6 +393,7 @@
     var checkCircleButton = document.createElement('i')
     checkCircleButton.setAttribute('class', 'fa fa-check-circle fa-3x add-form-check')
     checkCircleButton.setAttribute('aria-hidden', 'true')
+    checkCircleButton.addEventListener('click', submitForm)
 
     // appends the buttons to the div then append the div to the form
     buttonsContainer.appendChild(checkCircleButton)
@@ -400,22 +402,26 @@
 
     // create a hidden input for the latitude
     var latInput = document.createElement('input')
+    latInput.setAttribute('class', 'add-form-input')
     latInput.setAttribute('type', 'hidden')
     latInput.setAttribute('value', lat)
     latInput.setAttribute('name', 'lat')
 
     // create a hidden input for the longitude
     var lngInput = document.createElement('input')
+    lngInput.setAttribute('class', 'add-form-input')
     lngInput.setAttribute('type', 'hidden')
     lngInput.setAttribute('value', lng)
     lngInput.setAttribute('name', 'long')
 
     var imgHiddenInput = document.createElement('input')
+    imgHiddenInput.setAttribute('class', 'add-form-input')
     imgHiddenInput.setAttribute('type', 'hidden')
     imgHiddenInput.setAttribute('name', 'img_url')
 
     addNuggetForm.appendChild(latInput)
     addNuggetForm.appendChild(lngInput)
+    addNuggetForm.appendChild(imgHiddenInput)
 
     var newDiv = document.createElement('div')
     newDiv.classList.add('slide-up-tab')
