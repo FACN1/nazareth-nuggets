@@ -343,7 +343,7 @@
 
     var txtboxName = document.createElement('input')
     txtboxName.setAttribute('type', 'text')
-    txtboxName.setAttribute('value', 'author')
+    txtboxName.setAttribute('name', 'author')
     txtboxName.classList.add('add-form-input')
 
     addNuggetForm.appendChild(paraName)
