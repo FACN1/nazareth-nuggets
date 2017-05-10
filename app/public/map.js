@@ -121,6 +121,9 @@
   }
 
   function displayForm (e) {
+    if (state.currentView !== 'locationSelect') {
+      return
+    }
     locationSelectDisplay.classList.remove('visible')
     var clickedLocation = mymap.getCenter()
     var addNuggetFormTab = createForm(clickedLocation.lat, clickedLocation.lng)
@@ -128,6 +131,7 @@
     setTimeout(function () {
       addNuggetFormTab.classList.add('visible')
     }, 50)
+    state.currentView = 'formTab'
   }
 
   function createMarker (nugget, iconsMap) {
@@ -236,6 +240,9 @@
       errorMessage.textContent = '*Please fill in the form'
       return
     }
+
+    state.currentView = 'map'
+
     // send data to server
     makeRequest('POST', '/add-nugget', formData, function (err) {
       if (err) {
@@ -273,11 +280,16 @@
   var locationSelectCross = document.querySelector('.location-select-cross')
   locationSelectCross.addEventListener('click', function (e) {
     locationSelectDisplay.classList.toggle('visible')
+    state.currentView = 'map'
   })
 
   var addNuggetButton = document.querySelector('.add-nugget-button')
   addNuggetButton.addEventListener('click', function (e) {
+    if (state.currentView !== 'map') {
+      return
+    }
     locationSelectDisplay.classList.toggle('visible')
+    state.currentView = 'locationSelect'
   })
 
   function createForm (lat, lng) { // eslint-disable-line
