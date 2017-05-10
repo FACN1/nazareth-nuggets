@@ -241,8 +241,6 @@
       return
     }
 
-    state.currentView = 'map'
-
     // send data to server
     makeRequest('POST', '/add-nugget', formData, function (err) {
       if (err) {
@@ -255,6 +253,7 @@
       createMarker(formData, bigIconsMap).addTo(bigIconsLayer)
       // remove form from page
       form.parentNode.classList.remove('visible')
+      state.currentView = 'map'
       setTimeout(function () {
         document.body.removeChild(form.parentNode)
       }, TAB_ANIMATION_DURATION)
