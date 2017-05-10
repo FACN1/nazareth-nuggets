@@ -228,6 +228,8 @@
       }
       // put pin on map (currently commented out awaiting implementation)
       // addNuggetToMap(formData)
+      createMarker(formData, smallIconsMap).addTo(smallIconsLayer)
+      createMarker(formData, bigIconsMap).addTo(bigIconsLayer)
       // remove form from page
       form.parentNode.classList.remove('visible')
       setTimeout(function () {
@@ -235,50 +237,6 @@
       }, TAB_ANIMATION_DURATION)
     })
   }
-
-  // commented out temporarily to prevent script error
-  // Amazon S3
-  // document.querySelector('.image-input').onchange = function () {
-  //   var files = document.querySelector('.image-input').files
-  //   var file = files[0]
-  //   if (file === null) {
-  //     // should send the user that he didn't uplaod a file or it wasn't succeful
-  //     return
-  //   }
-  //   getSignedRequest(file)
-  // }
-  //
-  // function getSignedRequest (file) {
-  //   var xhr = new XMLHttpRequest()
-  //   xhr.open('GET', '/sign-s3?file-name=' + file.name + '&file-type=' + file.type)
-  //   xhr.onreadystatechange = function () {
-  //     if (xhr.readyState === 4) {
-  //       if (xhr.status === 200) {
-  //         var response = JSON.parse(xhr.responseText)
-  //         uploadFile(file, response.signedRequest, response.url)
-  //       } else {
-  //         // should send the user a message saying that uplading the image wasn't succeful and try again
-  //       }
-  //     }
-  //   }
-  //   xhr.send()
-  // }
-  //
-  // function uploadFile (file, signedRequest, url) {
-  //   var xhr = new XMLHttpRequest()
-  //   xhr.open('PUT', signedRequest)
-  //   xhr.onreadystatechange = function () {
-  //     if (xhr.readyState === 4) {
-  //       if (xhr.status === 200) {
-  //         // adds the url to a hidden input in the form to send it to the server
-  //         document.querySelector('.hidden-input-in-form').value = url
-  //       } else {
-  //         // should send the user a message saying that uplading the image wasn't succeful and try again
-  //       }
-  //     }
-  //   }
-  //   xhr.send(file)
-  // }
 
   var locationSelectDisplay = document.querySelector('.location-select-display')
   var centerButton = document.querySelector('.center-button')
@@ -300,7 +258,6 @@
   })
 
   function createForm (lat, lng) { // eslint-disable-line
-
     // creates the form
     var addNuggetForm = document.createElement('form')
 
@@ -442,6 +399,49 @@
     var newDiv = document.createElement('div')
     newDiv.classList.add('slide-up-tab')
     newDiv.classList.add('add-nugget-tab')
+
+    // Amazon AWS3
+    uploadBtn1.onchange = function () {
+      var files = uploadBtn1.files
+      var file = files[0]
+      if (file === null) {
+        // should send the user that he didn't uplaod a file or it wasn't succeful
+        return
+      }
+      getSignedRequest(file)
+    }
+
+    function getSignedRequest (file) {
+      var xhr = new XMLHttpRequest()
+      xhr.open('GET', '/sign-s3?file-name=' + file.name + '&file-type=' + file.type)
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText)
+            uploadFile(file, response.signedRequest, response.url)
+          } else {
+            // should send the user a message saying that uplading the image wasn't succeful and try again
+          }
+        }
+      }
+      xhr.send()
+    }
+
+    function uploadFile (file, signedRequest, url) {
+      var xhr = new XMLHttpRequest()
+      xhr.open('PUT', signedRequest)
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            // adds the url to a hidden input in the form to send it to the server
+            imgHiddenInput.value = url
+          } else {
+            // should send the user a message saying that uplading the image wasn't succeful and try again
+          }
+        }
+      }
+      xhr.send(file)
+    }
 
     newDiv.appendChild(addNuggetForm)
     return newDiv
