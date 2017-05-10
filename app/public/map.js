@@ -362,6 +362,9 @@
     timesCircleButton.setAttribute('class', 'fa fa-times-circle fa-3x add-form-times')
     timesCircleButton.setAttribute('aria-hidden', 'true')
     timesCircleButton.addEventListener('click', function (e) {
+      setTimeout(function () {
+        document.body.removeChild(newDiv)
+      }, TAB_ANIMATION_DURATION)
       newDiv.classList.toggle('visible')
       locationSelectDisplay.classList.toggle('visible')
     })
