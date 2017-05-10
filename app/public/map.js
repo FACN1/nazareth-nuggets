@@ -403,7 +403,6 @@
     var newDiv = document.createElement('div')
     newDiv.classList.add('slide-up-tab')
     newDiv.classList.add('add-nugget-tab')
-    newDiv.classList.add('form-container')
 
     // Amazon AWS3
     uploadBtn1.onchange = function () {
