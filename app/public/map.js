@@ -217,7 +217,7 @@
     if (!validateData(formData)) {
       // display message
       var errorMessage = document.querySelector('.err-message')
-      errorMessage.textContent = 'Please fill in the form'
+      errorMessage.textContent = '*Please fill in the form'
       return
     }
     // send data to server
@@ -304,8 +304,6 @@
     // creates the form
     var addNuggetForm = document.createElement('form')
 
-    var errorMessage = document.createElement('P')
-    errorMessage.classList.add('err-message')
     // create the nugget title and its input then renders it to the form
     var paraTitle1 = document.createElement('P')
     var paraTitle1Attr = document.createTextNode('Title: ')
@@ -317,7 +315,6 @@
     txtBoxTitle1.setAttribute('name', 'title')
     txtBoxTitle1.classList.add('add-form-input')
 
-    addNuggetForm.appendChild(errorMessage)
     addNuggetForm.appendChild(paraTitle1)
     addNuggetForm.appendChild(txtBoxTitle1)
 
@@ -395,6 +392,10 @@
     addNuggetForm.appendChild(paraName)
     addNuggetForm.appendChild(txtboxName)
 
+    var errorMessage = document.createElement('P')
+    errorMessage.classList.add('err-message')
+
+    addNuggetForm.appendChild(errorMessage)
     // create a div to append buttons (check/cross) to it to have moe control over them on the form tab
     var buttonsContainer = document.createElement('div')
     buttonsContainer.classList.add('add-form-buttons')
