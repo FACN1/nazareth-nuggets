@@ -12,30 +12,54 @@
 
   var bigIconsMap = {
     food: L.icon({
-      iconUrl: './assets/food.png',
+      iconUrl: './assets/icons/food.png',
+      iconSize: [24, 24]
+    }),
+    'fun fact': L.icon({
+      iconUrl: './assets/icons/fun-fact.png',
+      iconSize: [24, 24]
+    }),
+    history: L.icon({
+      iconUrl: './assets/icons/history.png',
+      iconSize: [24, 24]
+    }),
+    information: L.icon({
+      iconUrl: './assets/icons/information.png',
       iconSize: [24, 24]
     }),
     nature: L.icon({
-      iconUrl: './assets/nature.png',
+      iconUrl: './assets/icons/nature.png',
       iconSize: [24, 24]
     }),
-    exclamation: L.icon({
-      iconUrl: './assets/exclamation.png',
+    viewpoint: L.icon({
+      iconUrl: './assets/icons/viewpoint.png',
       iconSize: [24, 24]
     })
   }
 
   var smallIconsMap = {
     food: L.icon({
-      iconUrl: './assets/food-small.png',
+      iconUrl: './assets/icons-small/food-small.png',
+      iconSize: [8, 8]
+    }),
+    'fun fact': L.icon({
+      iconUrl: './assets/icons-small/fun-fact-small.png',
+      iconSize: [8, 8]
+    }),
+    history: L.icon({
+      iconUrl: './assets/icons-small/history-small.png',
+      iconSize: [8, 8]
+    }),
+    information: L.icon({
+      iconUrl: './assets/icons-small/information-small.png',
       iconSize: [8, 8]
     }),
     nature: L.icon({
-      iconUrl: './assets/nature-small.png',
+      iconUrl: './assets/icons-small/nature-small.png',
       iconSize: [8, 8]
     }),
-    exclamation: L.icon({
-      iconUrl: './assets/exclamation-small.png',
+    viewpoint: L.icon({
+      iconUrl: './assets/icons-small/viewpoint-small.png',
       iconSize: [8, 8]
     })
   }
@@ -300,22 +324,21 @@
     DropDownCategory.classList.add('add-form-category-input')
     DropDownCategory.classList.add('add-form-input')
 
-    var option1 = document.createElement('option')
-    option1.textContent = 'Food'
-    option1.setAttribute('value', 'food')
-    DropDownCategory.appendChild(option1)
-    var option2 = document.createElement('option')
-    option2.textContent = 'Info'
-    option2.setAttribute('value', 'info')
-    DropDownCategory.appendChild(option2)
-    var option3 = document.createElement('option')
-    option3.textContent = 'Fun Fact!'
-    option3.setAttribute('value', 'fun fact')
-    DropDownCategory.appendChild(option3)
-    var option4 = document.createElement('option')
-    option4.textContent = 'View'
-    option4.setAttribute('value', 'view')
-    DropDownCategory.appendChild(option4)
+    var categories = [
+      {value: 'fun fact', textContent: 'Fun fact'},
+      {value: 'viewpoint', textContent: 'Viewpoint'},
+      {value: 'history', textContent: 'History'},
+      {value: 'nature', textContent: 'Nature'},
+      {value: 'information', textContent: 'Information'},
+      {value: 'food', textContent: 'Food'}
+    ]
+
+    categories.forEach(function (category) {
+      var option = document.createElement('option')
+      option.setAttribute('value', category.value)
+      option.textContent = category.textContent
+      DropDownCategory.appendChild(option)
+    })
 
     addNuggetForm.appendChild(paraCategory2)
     addNuggetForm.appendChild(DropDownCategory)
