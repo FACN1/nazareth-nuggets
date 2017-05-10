@@ -207,7 +207,6 @@
     inputs.forEach(function (input) {
       formData[input.name] = input.value
     })
-    // validate data ?
     // send data to server
     makeRequest('POST', '/add-nugget', formData, function (err) {
       if (err) {
@@ -216,6 +215,8 @@
       }
       // put pin on map (currently commented out awaiting implementation)
       // addNuggetToMap(formData)
+      createMarker(formData, smallIconsMap).addTo(smallIconsLayer)
+      createMarker(formData, bigIconsMap).addTo(bigIconsLayer)
       // remove form from page
       form.parentNode.classList.remove('visible')
       setTimeout(function () {
