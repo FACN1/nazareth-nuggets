@@ -152,6 +152,7 @@
     var clickedLocation = mymap.getCenter()
     var addNuggetFormTab = createForm(clickedLocation.lat, clickedLocation.lng)
     document.body.appendChild(addNuggetFormTab)
+    document.querySelector('.add-nugget-button').style.display = 'none'
     setTimeout(function () {
       addNuggetFormTab.classList.add('visible')
     }, 50)
@@ -266,6 +267,7 @@
     }
 
     // send data to server
+    document.querySelector('.add-nugget-button').style.display = 'block'
     makeRequest('POST', '/add-nugget', formData, function (err) {
       if (err) {
         // pop up error message suggesting try to submit the orm again
