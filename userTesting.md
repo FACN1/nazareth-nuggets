@@ -31,3 +31,25 @@ they are not sure that are capable to add to the map.
 - It was not clear to him where is the old city located, and to make it clear where he himself is located in relation to it
 - Wanted to know if there's a way to change his mind on the info he posted, when he realized the cancellation button was below, he suggested putting the cancellation button above where it will be clear where it is on first sight
 - SAid that the app would be most useful once it has information for most cities
+
+### Dan Sofer
+how would you explore a city?
+- Nazareth, it’s small so would just wander around
+- would use an app if it was good
+- don’t want to spend all my time with my head in a guidebook
+- most important thing probably find the good food/cafes
+
+on seeing the app:
+- book icon means bible?
+- what’s the yellow thing?
+- ooh food!
+- maybe a legend would be useful for different icons?
+
+re-location button is bad:
+- unclear that it’s going to move the map
+- very bad UX (undeniably should be changed)
+
+when adding:
+- cool animation!
+- location screen was natural to navigate
+- want a shopping category?
